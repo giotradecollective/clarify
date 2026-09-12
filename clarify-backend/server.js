@@ -29,7 +29,7 @@ const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 15 
 const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const PORT = process.env.PORT || 3001;
-const MODEL = process.env.CLARIFY_MODEL || "gemini-2.5-flash";
+const MODEL = process.env.CLARIFY_MODEL || "gemini-3.6-flash";
 
 // Lock CORS down to your deployed frontend's origin in production.
 const allowedOrigins = (process.env.ALLOWED_ORIGIN || "*").split(",").map(s => s.trim());
