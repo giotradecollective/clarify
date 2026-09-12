@@ -148,7 +148,8 @@ app.post("/api/sessions/:id/analyze", requireSession, async (req, res) => {
       config: {
         systemInstruction: ANALYSIS_SYSTEM_PROMPT,
         responseMimeType: "application/json",
-        maxOutputTokens: 4000,
+        maxOutputTokens: 8000,
+        thinkingConfig: { thinkingLevel: "low" },
       },
     });
     const analysis = parseJsonLoose(response.text);
@@ -182,7 +183,8 @@ app.post("/api/sessions/:id/ask", requireSession, async (req, res) => {
       config: {
         systemInstruction: QA_SYSTEM_PROMPT,
         responseMimeType: "application/json",
-        maxOutputTokens: 800,
+        maxOutputTokens: 1500,
+        thinkingConfig: { thinkingLevel: "low" },
       },
     });
     const answer = parseJsonLoose(response.text);
@@ -195,7 +197,12 @@ app.post("/api/sessions/:id/ask", requireSession, async (req, res) => {
 
 function parseJsonLoose(raw) {
   const cleaned = raw.trim().replace(/^```json\s*|^```\s*|```$/g, "");
-  return JSON.parse(cleaned);
+  try {
+    return JSON.parse(cleaned);
+  } catch (err) {
+    const truncated = !cleaned.trim().endsWith("}") && !cleaned.trim().endsWith("]");
+    throw new Error(truncated ? "Response was cut off before completing — try increasing maxOutputTokens." : err.message);
+  }
 }
 
 app.get("/health", (req, res) => res.json({ ok: true }));
