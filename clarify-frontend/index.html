@@ -303,7 +303,7 @@ const CHECKLIST_SEED_QUESTIONS = [
 
 function App() {
   const [view, setView] = useState("welcome"); // welcome | upload | processing | results | ended
-  const [apiBase, setApiBase] = useState("http://localhost:3001");
+  const [apiBase, setApiBase] = useState("https://clarify-2nio.onrender.com");
   const [sessionId, setSessionId] = useState(null);
   const [docText, setDocText] = useState("");
   const [file, setFile] = useState(null);
