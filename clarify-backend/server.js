@@ -114,28 +114,69 @@ async function extractText(file) {
 
 const ANALYSIS_SYSTEM_PROMPT = `You are CLARIFY, an assistant that explains contracts in plain language for the person about to sign them, not the party who wrote them.
 
-Read the contract text the user provides and respond with ONLY a single JSON object (no markdown fences, no commentary before or after) matching exactly this shape:
-
-{
-  "snapshot": { "summary": string, "parties": string, "term": string, "estCost": string },
-  "gaps": string[],
-  "findings": [
-    { "title": string, "status": "Clearly stated" | "Inferred" | "Unclear" | "Worth checking",
-      "explanation": string, "whyItMatters": string, "page": string, "clause": string,
-      "quote": string, "question": string }
-  ],
-  "costs": [ { "label": string, "type": string, "amount": string } ],
-  "dates": [ { "label": string, "date": string } ],
-  "obligations": { "user": string[], "other": string[] },
-  "checklist": string[],
-  "suggestedQuestions": string[]
-}
+Read the contract text the user provides and fill in the structured response.
 
 Rules:
-- Every "quote" must be copied verbatim from the supplied text (a few words to one sentence), and "page"/"clause" should reference where in the document it appears as best you can tell (use "Not specified" if the document has no page/clause markers).
+- Every "quote" must be copied verbatim from the supplied text (a few words to one sentence).
 - Use "status" honestly: "Clearly stated" only when the contract says it outright; "Inferred" when you're reading between the lines; "Unclear" when the language is ambiguous; "Worth checking" for anything risky enough the user should ask about it before signing.
 - Never invent numbers, dates, or obligations that aren't in the text. If something important is missing (e.g. no termination clause), list it in "gaps" instead of guessing.
 - Write for someone with no legal background. Short, plain sentences.`;
+
+const ANALYSIS_SCHEMA = {
+  type: "object",
+  properties: {
+    snapshot: {
+      type: "object",
+      properties: {
+        summary: { type: "string" }, parties: { type: "string" },
+        term: { type: "string" }, estCost: { type: "string" },
+      },
+      required: ["summary", "parties", "term", "estCost"],
+    },
+    gaps: { type: "array", items: { type: "string" } },
+    findings: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          title: { type: "string" },
+          status: { type: "string", enum: ["Clearly stated", "Inferred", "Unclear", "Worth checking"] },
+          explanation: { type: "string" }, whyItMatters: { type: "string" },
+          page: { type: "string" }, clause: { type: "string" },
+          quote: { type: "string" }, question: { type: "string" },
+        },
+        required: ["title", "status", "explanation", "whyItMatters", "page", "clause", "quote", "question"],
+      },
+    },
+    costs: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: { label: { type: "string" }, type: { type: "string" }, amount: { type: "string" } },
+        required: ["label", "type", "amount"],
+      },
+    },
+    dates: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: { label: { type: "string" }, date: { type: "string" } },
+        required: ["label", "date"],
+      },
+    },
+    obligations: {
+      type: "object",
+      properties: {
+        user: { type: "array", items: { type: "string" } },
+        other: { type: "array", items: { type: "string" } },
+      },
+      required: ["user", "other"],
+    },
+    checklist: { type: "array", items: { type: "string" } },
+    suggestedQuestions: { type: "array", items: { type: "string" } },
+  },
+  required: ["snapshot", "gaps", "findings", "costs", "dates", "obligations", "checklist", "suggestedQuestions"],
+};
 
 app.post("/api/sessions/:id/analyze", requireSession, async (req, res) => {
   const text = req.session.text;
@@ -148,6 +189,7 @@ app.post("/api/sessions/:id/analyze", requireSession, async (req, res) => {
       config: {
         systemInstruction: ANALYSIS_SYSTEM_PROMPT,
         responseMimeType: "application/json",
+        responseSchema: ANALYSIS_SCHEMA,
         maxOutputTokens: 8000,
         thinkingConfig: { thinkingLevel: "low" },
       },
@@ -156,7 +198,7 @@ app.post("/api/sessions/:id/analyze", requireSession, async (req, res) => {
     req.session.analysis = analysis;
     res.json({ analysis });
   } catch (err) {
-    console.error("analyze error:", err);
+    console.error("analyze error:", err, "| raw response:", err.rawText || "(not captured)");
     res.status(502).json({ error: "The analysis service didn't return a usable result. Please try again." });
   }
 });
@@ -165,10 +207,17 @@ app.post("/api/sessions/:id/analyze", requireSession, async (req, res) => {
 
 const QA_SYSTEM_PROMPT = `You are CLARIFY, answering follow-up questions about a contract using ONLY the contract text provided — never outside knowledge or assumptions about what's "typical".
 
-Respond with ONLY a single JSON object (no markdown fences):
-{ "answer": string, "status": "Answered from contract" | "Not addressed in contract", "evidence": string }
-
 If the contract doesn't cover the question, say so plainly in "answer" and set status to "Not addressed in contract" with an empty "evidence".`;
+
+const QA_SCHEMA = {
+  type: "object",
+  properties: {
+    answer: { type: "string" },
+    status: { type: "string", enum: ["Answered from contract", "Not addressed in contract"] },
+    evidence: { type: "string" },
+  },
+  required: ["answer", "status", "evidence"],
+};
 
 app.post("/api/sessions/:id/ask", requireSession, async (req, res) => {
   const { question } = req.body || {};
@@ -183,6 +232,7 @@ app.post("/api/sessions/:id/ask", requireSession, async (req, res) => {
       config: {
         systemInstruction: QA_SYSTEM_PROMPT,
         responseMimeType: "application/json",
+        responseSchema: QA_SCHEMA,
         maxOutputTokens: 1500,
         thinkingConfig: { thinkingLevel: "low" },
       },
@@ -190,7 +240,7 @@ app.post("/api/sessions/:id/ask", requireSession, async (req, res) => {
     const answer = parseJsonLoose(response.text);
     res.json({ answer });
   } catch (err) {
-    console.error("ask error:", err);
+    console.error("ask error:", err, "| raw response:", err.rawText || "(not captured)");
     res.status(502).json({ error: "Couldn't get an answer just now." });
   }
 });
@@ -201,7 +251,9 @@ function parseJsonLoose(raw) {
     return JSON.parse(cleaned);
   } catch (err) {
     const truncated = !cleaned.trim().endsWith("}") && !cleaned.trim().endsWith("]");
-    throw new Error(truncated ? "Response was cut off before completing — try increasing maxOutputTokens." : err.message);
+    const wrapped = new Error(truncated ? "Response was cut off before completing — try increasing maxOutputTokens." : err.message);
+    wrapped.rawText = cleaned.slice(0, 2000);
+    throw wrapped;
   }
 }
 
