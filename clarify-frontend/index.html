@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CLARIFY — Understand before you sign</title>
+<title>CLARIFY: Understand before you sign</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -57,13 +57,14 @@
     font-family:var(--sans);font-size:13.5px;font-weight:600;
     padding:9px 16px;border-radius:3px;border:1px solid var(--ink);
     background:var(--ink);color:#fff;cursor:pointer;
-    transition:opacity .15s ease;
+    transition:opacity .15s ease, transform .15s ease, box-shadow .15s ease;
   }
-  .btn:hover{opacity:.85;}
+  .btn:hover{opacity:.85;transform:translateY(-1px);box-shadow:0 4px 10px rgba(24,34,51,0.15);}
+  .btn:active{transform:translateY(0);box-shadow:none;}
   .btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line);}
-  .btn.secondary:hover{border-color:var(--ink);opacity:1;}
+  .btn.secondary:hover{border-color:var(--ink);opacity:1;box-shadow:none;}
   .btn.danger{background:transparent;color:var(--red);border:1px solid var(--red);}
-  .btn:disabled{opacity:.45;cursor:not-allowed;}
+  .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
 
   /* ---- Main ---- */
   main{flex:1;width:100%;display:flex;justify-content:center;padding:48px 24px 80px;}
@@ -71,14 +72,72 @@
 
   h1{font-family:var(--serif);font-weight:600;font-size:34px;line-height:1.25;margin:0 0 14px;color:var(--ink);}
   h2{font-family:var(--serif);font-weight:600;font-size:22px;margin:0 0 8px;color:var(--ink);}
-  p.lede{color:var(--ink-soft);font-size:16px;line-height:1.65;max-width:56ch;}
+  p.lede{color:var(--ink-soft);font-size:16px;line-height:1.65;max-width:56ch;margin:0 0 14px;}
+  p.lede:last-of-type{margin-bottom:0;}
   .muted{color:var(--muted);}
   small.foot{color:var(--muted);font-size:12.5px;}
 
   /* welcome */
-  .principles{margin-top:28px;display:grid;gap:10px;}
-  .principle{display:flex;gap:10px;font-size:14px;color:var(--ink-soft);align-items:flex-start;}
-  .principle svg{flex-shrink:0;margin-top:2px;}
+  .col:has(.welcome-hero){max-width:960px;}
+  .welcome-hero{animation:heroIn .45s ease;}
+  @keyframes heroIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:11.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--blue);background:var(--blue-bg);padding:6px 13px;border-radius:20px;
+    margin-bottom:20px;
+  }
+  .dot2{width:5px;height:5px;border-radius:50%;background:var(--blue);display:inline-block;}
+
+  .welcome-hero h1{font-size:38px;line-height:1.18;letter-spacing:-0.01em;margin:0 0 10px;}
+  .subhead{font-size:13.5px;color:var(--muted);letter-spacing:0.01em;margin:0 0 28px;}
+
+  .welcome-grid{display:grid;grid-template-columns:1fr;gap:36px;}
+  @media (min-width:880px){
+    .welcome-grid{grid-template-columns:1.15fr 0.85fr;gap:52px;align-items:start;}
+    .welcome-grid .demo-card{position:sticky;top:96px;}
+  }
+
+  .principles{margin-top:28px;display:grid;gap:14px;}
+  .principle{display:flex;gap:12px;font-size:14px;color:var(--ink-soft);align-items:center;}
+  .icon-badge{
+    flex-shrink:0;width:26px;height:26px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .icon-badge.green{background:var(--green-bg);}
+  .icon-badge.amber{background:var(--amber-bg);}
+  .icon-badge.blue{background:var(--blue-bg);}
+
+  .demo-card{
+    position:relative;margin-top:0;border:1px solid var(--line);border-radius:10px;
+    background:var(--panel);padding:30px 28px 26px;
+    box-shadow:0 10px 34px rgba(24,34,51,0.07);
+  }
+  .demo-card::before{
+    content:"\201C";position:absolute;top:-2px;left:22px;
+    font-family:var(--serif);font-size:64px;line-height:1;color:var(--line);
+    pointer-events:none;
+  }
+  .demo-head{margin-bottom:14px;}
+  .demo-tag{
+    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+    padding:4px 10px;border-radius:20px;background:var(--amber-bg);color:var(--amber);
+    transition:background .2s ease,color .2s ease;
+  }
+  .demo-tag.plain{background:var(--green-bg);color:var(--green);}
+  .demo-text{
+    font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--ink);
+    margin:0 0 20px;min-height:120px;
+    animation:fadein .25s ease;
+  }
+  @keyframes fadein{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
+  .demo-toggle{
+    background:none;border:none;padding:0;cursor:pointer;font-family:var(--sans);
+    font-size:13.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px;
+    transition:gap .15s ease;
+  }
+  .demo-toggle:hover{gap:9px;color:var(--blue);}
 
   /* upload */
   .dropzone{
@@ -86,6 +145,7 @@
     padding:40px 24px;text-align:center;background:var(--panel);
     cursor:pointer;transition:border-color .15s ease,background .15s ease;
   }
+  .dropzone:hover{border-color:#b9b4a4;}
   .dropzone.drag{border-color:var(--ink);background:var(--green-bg);}
   .dropzone p{margin:6px 0;color:var(--ink-soft);font-size:14px;}
   .dropzone .hint{font-size:12.5px;color:var(--muted);}
@@ -209,6 +269,42 @@
     align-items:center;font-size:12px;color:var(--muted);background:var(--panel);
   }
   footer a{color:var(--muted);}
+  .legal-links{display:flex;gap:16px;align-items:center;}
+
+  .legal-link{
+    background:none;border:none;padding:0;font:inherit;color:var(--muted);cursor:pointer;
+    text-decoration:underline;text-underline-offset:2px;
+  }
+  .legal-link:hover{color:var(--ink-soft);}
+
+  .legal-overlay{
+    position:fixed;inset:0;background:rgba(24,34,51,0.45);display:flex;
+    align-items:center;justify-content:center;padding:24px;z-index:100;
+  }
+  .legal-modal{
+    background:var(--panel);border-radius:6px;max-width:640px;width:100%;
+    max-height:80vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.25);
+  }
+  .legal-modal-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 24px;border-bottom:1px solid var(--line);flex-shrink:0;
+  }
+  .legal-modal-head h2{font-family:var(--serif);font-size:20px;margin:0;font-weight:600;}
+  .legal-close{
+    background:none;border:none;cursor:pointer;color:var(--muted);padding:4px;
+    display:flex;align-items:center;justify-content:center;border-radius:3px;
+  }
+  .legal-close:hover{background:var(--paper);color:var(--ink);}
+  .legal-modal-body{
+    padding:20px 24px 28px;overflow-y:auto;font-size:14px;line-height:1.6;color:var(--ink-soft);
+  }
+  .legal-modal-body p{margin:0 0 14px;}
+  .legal-modal-body p:last-child{margin-bottom:0;}
+
+  @media (max-width:640px){
+    footer{flex-direction:column;gap:10px;align-items:flex-start;}
+    footer > span:last-child{flex-wrap:wrap;gap:10px 14px;}
+  }
 
   .err-box{margin-top:18px;padding:12px 16px;background:var(--red-bg);color:var(--red);border-radius:3px;font-size:13.5px;}
 
@@ -235,6 +331,7 @@ function Icon({name, color="currentColor", size=16}) {
     check: <path d="M3 8l3.5 3.5L13 4" stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>,
     lock: <path d="M4 7V5a4 4 0 018 0v2m-9 0h10v7H3V7z" stroke={color} strokeWidth="1.4" fill="none" strokeLinejoin="round"/>,
     trash: <path d="M3 4h10M6 4V2.5h4V4m-6 0l.6 8.5A1 1 0 005.6 13.5h4.8a1 1 0 001-1L12 4" stroke={color} strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round"/>,
+    x: <path d="M4 4l8 8M12 4l-8 8" stroke={color} strokeWidth="1.6" fill="none" strokeLinecap="round"/>,
   };
   return <svg width={size} height={size} viewBox="0 0 16 16">{paths[name]}</svg>;
 }
@@ -274,7 +371,7 @@ async function api(apiBase, path, options = {}) {
 const backend = {
   createSession: (apiBase) => api(apiBase, "/api/sessions", {
     method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ contractType: "residential-lease" }),
+    body: JSON.stringify({}),
   }),
   uploadFile: (apiBase, sessionId, file) => {
     const fd = new FormData();
@@ -293,13 +390,205 @@ const backend = {
   end: (apiBase, sessionId) => api(apiBase, `/api/sessions/${sessionId}/end`, { method: "POST" }),
 };
 
-const NETWORK_HINT = "Couldn't reach the CLARIFY backend. Check the Backend URL below is correct, the server is running, and CORS is enabled for this origin.";
+const NETWORK_HINT = "Couldn't reach the CLARIFY backend right now. Please try again in a moment.";
 
 const CHECKLIST_SEED_QUESTIONS = [
   "What could this cost me in total?",
   "What happens if I need to cancel early?",
   "What's missing or incomplete?",
 ];
+
+const LEGAL_DOCS = {
+  privacy: {
+    title: "CLARIFY Privacy Policy",
+    body: `Last updated: [Insert date]
+
+1. Who we are
+CLARIFY is a product of GIOTRADE Technologies, a technology division of GIOTRADE Group (Pty) Ltd ("GIOTRADE Group", "we", "us" or "our"). GIOTRADE Group operates the CLARIFY service.
+
+This Privacy Policy explains how personal information may be processed when you use CLARIFY, including when you upload a contract for explanation.
+
+2. What CLARIFY does
+CLARIFY helps users understand contract wording by generating plain-language explanations, summaries, and questions to consider. It is an informational tool and is not a legal service.
+
+Contracts may contain personal information about you or other people. Please review a document before uploading it and remove information that is not necessary for your intended use.
+
+3. Information that may be processed
+Depending on how you use CLARIFY, information processed may include:
+• The contract or document you upload, including information contained in it.
+• Text you enter, questions you ask, and the resulting analysis.
+• Technical information required to operate and protect the service, such as device, browser, security, and error information.
+
+Do not upload identity documents, banking details, signatures, or other sensitive information unless it is necessary for your use of the service.
+
+4. Why information is processed
+Information may be processed to:
+• Receive and analyse documents and respond to your requests.
+• Provide, maintain, troubleshoot, and secure CLARIFY.
+• Detect misuse, investigate errors, and protect the service.
+• Meet applicable legal obligations and respond to lawful requests.
+
+We will not use document content for unrelated purposes unless permitted by law or you have been appropriately informed and, where required, have given consent.
+
+5. AI and service providers
+CLARIFY may rely on third-party hosting, infrastructure, or AI service providers to process documents and generate responses. These providers may process information on our behalf or as separate service providers, depending on their role and terms.
+
+Before launch, GIOTRADE Group must identify the providers used, review their data-processing terms, and confirm whether they retain inputs or outputs, use them to improve or train models, or process them outside South Africa. The applicable provider details should be made available here or in a linked service-provider notice.
+
+6. Storage and deletion
+CLARIFY is intended to process documents for the user's current session rather than provide a saved document history.
+
+However, this does not by itself establish that information is never stored. Temporary files, application logs, backups, hosting systems, or third-party AI services may retain information for limited periods.
+
+Our actual retention and deletion practices will be described here once verified. We will not claim that information is deleted immediately or never stored unless that has been confirmed across the systems involved.
+
+7. Sharing and international processing
+We do not sell personal information to advertisers.
+
+Information may be shared with service providers where necessary to operate CLARIFY, with professional advisers where appropriate, or where disclosure is required or permitted by law.
+
+If personal information is transferred outside South Africa, GIOTRADE Group will take steps required by applicable law for that transfer. The countries and providers involved should be confirmed and disclosed before launch.
+
+8. Security
+We use appropriate technical and organisational measures intended to protect information against unauthorised access, loss, misuse, alteration, or disclosure. No online service can guarantee absolute security.
+
+Users should avoid uploading information that is not necessary and should use CLARIFY only on devices and networks they consider reasonably secure.
+
+9. Your privacy rights
+Subject to applicable law, you may have rights to request access to, correction of, or deletion of your personal information, or to object to or complain about certain processing.
+
+To make a privacy request, contact: [Insert designated privacy email address].
+
+Information Officer: [Insert confirmed name or role and contact details]
+
+You may also contact the South African Information Regulator where applicable.
+
+10. Children
+CLARIFY is not intended for children to use without appropriate adult supervision. Do not upload a child's personal information unless you have the legal authority to do so and the upload is necessary.
+
+11. Changes to this policy
+We may update this Privacy Policy from time to time. The latest version will be published on the CLARIFY website with its updated date.
+
+12. Contact
+CLARIFY is operated by GIOTRADE Group (Pty) Ltd.
+
+Privacy contact: [Insert designated privacy email address]
+Business address: [Confirm the address to be published]
+
+This Privacy Policy should be read together with the CLARIFY Terms of Use and Disclaimer.`
+  },
+  terms: {
+    title: "CLARIFY Terms of Use",
+    body: `Last updated: [Insert date]
+
+1. About CLARIFY
+CLARIFY is a product of GIOTRADE Technologies, a technology division of GIOTRADE Group (Pty) Ltd ("GIOTRADE Group", "we", "us" or "our"). GIOTRADE Group operates the service.
+
+These Terms govern your access to and use of CLARIFY. By using the service, you agree to these Terms. If you do not agree, do not use CLARIFY.
+
+2. What the service provides
+CLARIFY uses automated technology, including artificial intelligence, to help explain contract wording in plain language. Depending on the available features, it may provide summaries, identify dates or obligations, highlight clauses for further review, and suggest questions you may wish to ask.
+
+Features may change, be limited, or become unavailable.
+
+3. Not legal advice
+CLARIFY is an informational aid only. It is not a law firm, attorney, legal representative, or substitute for advice from a qualified legal professional.
+
+The service does not determine whether a contract is valid, enforceable, lawful, fair, or suitable for you. You remain responsible for reviewing the original document and obtaining professional advice where appropriate.
+
+4. Your responsibilities
+You agree to:
+• Use CLARIFY lawfully and only for its intended purpose.
+• Upload only documents you are entitled to use and share for processing.
+• Consider the privacy rights of other people named in your documents.
+• Check generated explanations against the original contract.
+• Avoid relying on CLARIFY as the sole basis for signing, rejecting, or acting on a contract.
+• Not attempt to disrupt, misuse, reverse engineer, or gain unauthorised access to the service.
+
+You should remove unnecessary personal or confidential information before uploading a document.
+
+5. Accuracy and limitations
+Automated analysis may be incomplete, inaccurate, outdated, or based on a misunderstanding of the document. Scanned documents, poor image quality, unusual formatting, missing pages, and ambiguous wording may affect results.
+
+CLARIFY may fail to identify an important term or may describe a term incorrectly. You must check any quoted wording, page references, dates, amounts, and explanations against the original document.
+
+6. Documents and content
+You retain any rights you have in documents you upload. You grant GIOTRADE Group and its service providers permission to process those documents only as reasonably necessary to provide, secure, and maintain the service, subject to the Privacy Policy and applicable law.
+
+You are responsible for ensuring that you have the necessary rights and authority to upload a document.
+
+7. Privacy and processing
+Your use of CLARIFY is also governed by the Privacy Policy, which explains how information may be processed, including through hosting and AI service providers.
+
+CLARIFY is intended to support session-based document processing rather than a saved document history. Do not assume that every system involved deletes information immediately. Refer to the Privacy Policy for the verified retention and deletion practices.
+
+8. Availability and changes
+We may update, suspend, restrict, or discontinue all or part of CLARIFY, including for maintenance, security, or operational reasons. We will make reasonable efforts to keep the service available, but do not guarantee uninterrupted access.
+
+9. Third-party services
+CLARIFY may depend on third-party services. Their availability and processing practices may be outside our direct control. Where applicable, their terms and privacy notices may also apply.
+
+10. Intellectual property
+The CLARIFY name, branding, interface, software, and other service materials are owned by or licensed to GIOTRADE Group, except for content owned by users or third parties.
+
+You may use CLARIFY for its intended purpose. You may not copy, resell, or commercially exploit the service or its materials without permission, except where the law allows.
+
+11. Liability
+To the extent permitted by law, GIOTRADE Group is not responsible for decisions you make based solely on CLARIFY's output, or for loss arising from inaccurate, incomplete, or misunderstood analysis.
+
+Nothing in these Terms excludes or limits a right or liability that cannot lawfully be excluded or limited, including any applicable rights under South African consumer or data-protection law.
+
+12. Governing law
+These Terms are governed by the laws of the Republic of South Africa, subject to any mandatory legal protections that apply to you.
+
+13. Changes to these Terms
+We may update these Terms from time to time. The latest version will be published on the CLARIFY website with its updated date. Continued use after an update takes effect constitutes acceptance of the revised Terms, to the extent permitted by law.
+
+14. Contact
+CLARIFY is operated by GIOTRADE Group (Pty) Ltd.
+
+Contact: [Insert confirmed support or legal contact email]
+Business address: [Confirm the address to be published]`
+  },
+  disclaimer: {
+    title: "CLARIFY Disclaimer",
+    body: `Last updated: [Insert date]
+
+Important notice
+CLARIFY is a contract explanation tool provided by GIOTRADE Technologies, a technology division of GIOTRADE Group (Pty) Ltd. GIOTRADE Group operates the service.
+
+CLARIFY does not provide legal advice. Its summaries, explanations, flags, and suggested questions are for general information and educational purposes only.
+
+Not a substitute for professional advice
+CLARIFY does not act as your attorney or legal representative and does not establish an attorney-client relationship. It does not determine whether a contract is legally valid, enforceable, lawful, fair, or appropriate for your circumstances.
+
+If a contract may affect your rights, finances, housing, employment, or other important interests, consider obtaining advice from a qualified legal professional before signing or taking action.
+
+AI-generated results may be wrong
+CLARIFY uses automated technology, including artificial intelligence. Its output may contain errors, omit important terms, misread text, misunderstand context, or fail to account for applicable law or your particular circumstances.
+
+Always compare the output with the original contract. Check all dates, amounts, obligations, clause references, and quoted wording yourself.
+
+No guarantee of completeness
+A summary is not the contract itself. CLARIFY may not identify every relevant clause, risk, exception, or legal issue. A document's meaning may depend on other documents, facts, negotiations, or laws that CLARIFY has not considered.
+
+Your decisions remain yours
+You are responsible for deciding whether to sign, reject, negotiate, or act on a contract. Do not rely on CLARIFY as the sole basis for an important decision.
+
+Privacy reminder
+Contracts may contain personal or confidential information. Review your document before uploading it and remove information that is not necessary for your request. Refer to the CLARIFY Privacy Policy for information about processing and retention.
+
+Liability and legal rights
+To the extent permitted by law, GIOTRADE Group disclaims responsibility for decisions made solely in reliance on CLARIFY's output. Nothing in this Disclaimer excludes or limits rights or liabilities that cannot lawfully be excluded or limited under applicable law.
+
+Contact
+CLARIFY is operated by GIOTRADE Group (Pty) Ltd.
+Contact: [Insert confirmed support or legal contact email]`
+  }
+};
+
+const DEMO_CLAUSE = "\u201cIN NO EVENT SHALL EITHER PARTY'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT, WHETHER IN CONTRACT, TORT, OR OTHERWISE, EXCEED THE TOTAL FEES PAID OR PAYABLE BY THE DISADVANTAGED PARTY IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM, AND IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS OR LOST DATA, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.\u201d";
+const DEMO_PLAIN = "If something goes wrong, the most either side can be forced to pay is whatever you paid them over the past year \u2014 even if the actual damage is much bigger. And neither side can be sued for knock-on losses like lost profits or lost data, no matter how predictable those losses were.";
 
 function App() {
   const [view, setView] = useState("welcome"); // welcome | upload | processing | results | ended
@@ -319,6 +608,8 @@ function App() {
   const [qaBusy, setQaBusy] = useState(false);
   const [processingStep, setProcessingStep] = useState(0);
   const [sessionSeconds, setSessionSeconds] = useState(0);
+  const [legalDoc, setLegalDoc] = useState(null); // null | "privacy" | "terms" | "disclaimer"
+  const [demoOn, setDemoOn] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -355,7 +646,7 @@ function App() {
 
   async function runAnalysis() {
     if (!file && (!docText || docText.trim().length < 30)) {
-      setError("Please upload a lease document or paste enough contract text to analyse (a few sentences at minimum).");
+      setError("Please upload a document or paste enough contract text to analyse (a few sentences at minimum).");
       return;
     }
     setError("");
@@ -398,7 +689,7 @@ function App() {
     } catch (err) {
       setQaLog(log => {
         const copy = [...log];
-        copy[copy.length - 1].a = { answer: err.isNetworkError ? NETWORK_HINT : "Something went wrong answering this one — try rephrasing.", status: "Not addressed in contract", evidence: "" };
+        copy[copy.length - 1].a = { answer: err.isNetworkError ? NETWORK_HINT : "Something went wrong answering this one. Try rephrasing.", status: "Not addressed in contract", evidence: "" };
         return copy;
       });
     }
@@ -435,10 +726,14 @@ function App() {
           <span className="brand-mark">CLARIFY</span>
           <span className="brand-tag">Understand before you sign.</span>
         </div>
-        {showTopSession && (
+        {showTopSession ? (
           <div className="session-controls">
             <div className="session-pill"><span className="dot"></span>Session active · {fmtTime(sessionSeconds)}</div>
             <button className="btn danger" onClick={endSession}>End session &amp; clear</button>
+          </div>
+        ) : (
+          <div className="session-controls">
+            <button className="btn secondary">Log In</button>
           </div>
         )}
       </div>
@@ -447,27 +742,35 @@ function App() {
         <div className="col">
 
           {view === "welcome" && (
-            <div>
-              <h1>Understand before you sign.</h1>
-              <p className="lede">Upload a residential lease and get a clear, plain-language explanation — key costs, obligations, dates, and things worth checking, each linked back to the exact clause. No account. Nothing saved.</p>
-              <div className="principles">
-                <div className="principle"><Icon name="lock" color="#2f6f4e"/> No account, no document history — everything lives only in this session.</div>
-                <div className="principle"><Icon name="check" color="#2f6f4e"/> Every material finding is traced back to a page and clause.</div>
-                <div className="principle"><Icon name="check" color="#2f6f4e"/> Explains and flags — it never tells you a clause is legal or safe to sign.</div>
-              </div>
-              <div style={{marginTop:32}}>
-                <button className="btn" disabled={starting} onClick={startSession}>{starting ? "Starting…" : "Get started — Residential lease"}</button>
-              </div>
-              {error && <div className="err-box">{error}</div>}
-              <div className="disclaimer">
-                This is a working prototype connected to a real CLARIFY backend — not a static demo.
-                <div style={{marginTop:10, display:"flex", alignItems:"center", gap:8}}>
-                  <label className="muted" style={{fontSize:12.5}}>Backend URL:</label>
-                  <input
-                    value={apiBase}
-                    onChange={(e) => setApiBase(e.target.value)}
-                    style={{flex:1, fontSize:12.5, padding:"5px 8px", border:"1px solid var(--line)", borderRadius:3, fontFamily:"var(--sans)"}}
-                  />
+            <div className="welcome-hero">
+              <h1>Understand the fine print.<br/>Before you sign.</h1>
+              <p className="subhead">Save time, save money, and avoid the disputes that come from clauses no one really read.</p>
+
+              <div className="welcome-grid">
+                <div>
+                  <p className="lede">Contracts shouldn't leave you guessing. Upload your document and CLARIFY now!</p>
+                  <p className="lede">Get a clear, plain-language breakdown of key costs, deadlines, responsibilities, and clauses that deserve a closer look.</p>
+                  <p className="lede">No complicated prompts. No lengthy back-and-forth. Just clearer answers, in seconds.</p>
+                  <div className="principles">
+                    <div className="principle"><span className="icon-badge green"><Icon name="check" color="#2f6f4e"/></span> Traces every key finding back to the exact page and clause it came from.</div>
+                    <div className="principle"><span className="icon-badge amber"><Icon name="check" color="#b3720f"/></span> Flags what's risky or unclear, but never tells you a clause is safe to sign.</div>
+                    <div className="principle"><span className="icon-badge blue"><Icon name="check" color="#3a5a9b"/></span> Works across any kind of contract: leases, service agreements, NDAs, vendor terms, and more.</div>
+                  </div>
+
+                  <div style={{marginTop:32}}>
+                    <button className="btn" disabled={starting} onClick={startSession}>{starting ? "Starting…" : "Get started"}</button>
+                  </div>
+                  {error && <div className="err-box">{error}</div>}
+                </div>
+
+                <div className="demo-card">
+                  <div className="demo-head">
+                    <span className={"demo-tag" + (demoOn ? " plain" : "")}>{demoOn ? "In plain language" : "Straight from the contract"}</span>
+                  </div>
+                  <p className="demo-text" key={demoOn ? "plain" : "clause"}>{demoOn ? DEMO_PLAIN : DEMO_CLAUSE}</p>
+                  <button className="demo-toggle" onClick={() => setDemoOn(d => !d)}>
+                    {demoOn ? "← See the original clause" : "See what CLARIFY does with it →"}
+                  </button>
                 </div>
               </div>
             </div>
@@ -475,7 +778,7 @@ function App() {
 
           {view === "upload" && (
             <div>
-              <h2>Upload your lease</h2>
+              <h2>Upload your document</h2>
               <p className="lede" style={{fontSize:14.5}}>By continuing you confirm you're authorised to submit this document for review.</p>
               <div
                 className={"dropzone" + (dragging ? " drag" : "")}
@@ -489,7 +792,7 @@ function App() {
                 <input ref={fileInputRef} type="file" accept=".pdf,.docx,.txt" style={{display:"none"}} onChange={(e) => e.target.files[0] && handleFile(e.target.files[0])} />
               </div>
               <div className="or-divider"><span className="line"></span>or paste the text directly<span className="line"></span></div>
-              <textarea className="paste" placeholder="Paste the lease text here…" value={docText} onChange={(e) => { setDocText(e.target.value); if (e.target.value) { setFile(null); setFileName(""); } }} />
+              <textarea className="paste" placeholder="Paste the contract text here…" value={docText} onChange={(e) => { setDocText(e.target.value); if (e.target.value) { setFile(null); setFileName(""); } }} />
               {error && <div className="err-box">{error}</div>}
               <div style={{marginTop:22, display:"flex", gap:12}}>
                 <button className="btn" disabled={!file && !docText.trim()} onClick={runAnalysis}>Analyse this contract</button>
@@ -501,7 +804,7 @@ function App() {
           {view === "processing" && (
             <div className="processing">
               <h2>Reading your document</h2>
-              <p className="lede" style={{fontSize:14.5}}>Processed only for this session — nothing is written to disk.</p>
+              <p className="lede" style={{fontSize:14.5}}>Processed only for this session; nothing is written to disk.</p>
               <div className="step-track">
                 {["Sending your document to the CLARIFY backend", "Extracting text and running structured analysis", "Validating citations before showing results"].map((label, i) => (
                   <div key={i} className={"step-row" + (processingStep === i + 1 ? " active" : processingStep > i + 1 ? " done" : "")}>
@@ -578,7 +881,7 @@ function App() {
               {tab === "qa" && (
                 <div>
                   <h2>Ask about this contract</h2>
-                  <p className="lede" style={{fontSize:14.5}}>Answers come only from the uploaded text — CLARIFY says so when the document doesn't cover something.</p>
+                  <p className="lede" style={{fontSize:14.5}}>Answers come only from the uploaded text. CLARIFY says so when the document doesn't cover something.</p>
                   <div className="suggested-q">
                     {(analysis.suggestedQuestions || CHECKLIST_SEED_QUESTIONS).map((q,i) => (
                       <span key={i} className="chip" onClick={() => askQuestion(q)}>{q}</span>
@@ -606,7 +909,7 @@ function App() {
               {tab === "checklist" && (
                 <div>
                   <h2>Before you sign</h2>
-                  <p className="lede" style={{fontSize:14.5}}>A session-only checklist — cleared when you end the session.</p>
+                  <p className="lede" style={{fontSize:14.5}}>A session-only checklist, cleared when you end the session.</p>
                   <div className="checklist">
                     {analysis.checklist.map((item, i) => (
                       <div key={i} className={"check-item" + (checked[i] ? " checked" : "")} onClick={() => setChecked(c => ({...c, [i]: !c[i]}))}>
@@ -635,9 +938,31 @@ function App() {
       </main>
 
       <footer>
-        <span>CLARIFY — No storage. No accounts. Your privacy, always.</span>
-        <span>Powered by GIOTRADE Technologies</span>
+        <span className="legal-links">
+          <button className="legal-link" onClick={() => setLegalDoc("privacy")}>Privacy Policy</button>
+          <button className="legal-link" onClick={() => setLegalDoc("terms")}>Terms of Use</button>
+          <button className="legal-link" onClick={() => setLegalDoc("disclaimer")}>Disclaimer</button>
+        </span>
+        <span>Powered by GIOTRADE Technologies<sup style={{fontSize:9}}>®</sup></span>
       </footer>
+
+      {legalDoc && (
+        <div className="legal-overlay" onClick={() => setLegalDoc(null)}>
+          <div className="legal-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="legal-modal-head">
+              <h2>{LEGAL_DOCS[legalDoc].title}</h2>
+              <button className="legal-close" onClick={() => setLegalDoc(null)} aria-label="Close">
+                <Icon name="x" size={18}/>
+              </button>
+            </div>
+            <div className="legal-modal-body">
+              {LEGAL_DOCS[legalDoc].body.split("\n\n").map((para, i) => (
+                <p key={i} style={{whiteSpace:"pre-line"}}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
