@@ -108,6 +108,88 @@
   .icon-badge.green{background:var(--green-bg);}
   .icon-badge.amber{background:var(--amber-bg);}
   .icon-badge.blue{background:var(--blue-bg);}
+  .icon-badge.sm{width:22px;height:22px;}
+
+  .accent{
+    background:linear-gradient(90deg, #7ea3e0, var(--blue));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  .topnav{display:flex;gap:26px;margin-right:22px;}
+  .topnav a{font-size:13.5px;color:var(--ink-soft);text-decoration:none;font-weight:500;}
+  .topnav a:hover{color:var(--ink);}
+  .btn.pill{border-radius:22px;padding:9px 20px;}
+
+  .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft);
+    background:var(--panel);border:1px solid var(--line);padding:6px 12px;border-radius:20px;
+  }
+
+  .cta-row{display:flex;align-items:center;gap:20px;margin-top:28px;flex-wrap:wrap;}
+  .how-link{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:13.5px;font-weight:600;}
+  .play-dot{
+    width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--panel);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .how-sub{font-size:11.5px;font-weight:400;color:var(--muted);}
+  .lock-note{
+    display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);
+    margin-top:18px;
+  }
+
+  .mock-wrap{position:relative;min-height:380px;}
+  .mock-back{
+    position:absolute;top:10px;left:6%;width:78%;background:var(--panel);
+    border:1px solid var(--line);border-radius:8px;padding:22px 20px;
+    transform:rotate(-3deg);box-shadow:0 14px 30px rgba(24,34,51,0.08);
+  }
+  .mock-back-title{font-family:var(--serif);font-weight:600;font-size:13px;margin-bottom:14px;color:var(--ink-soft);}
+  .mock-line{height:6px;border-radius:3px;background:#eae7dd;margin-bottom:9px;}
+  .mock-line.accent-blue{background:var(--blue-bg);}
+  .mock-line.accent-amber{background:var(--amber-bg);}
+  .mock-front{
+    position:relative;background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:20px 22px 22px;transform:rotate(2deg);box-shadow:0 20px 46px rgba(24,34,51,0.12);
+    max-width:88%;margin-left:auto;
+  }
+  .mock-front-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .mock-front-doc{font-size:11px;color:var(--muted);}
+  .mock-tabs{display:flex;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px;flex-wrap:wrap;}
+  .mock-tab{font-size:11px;color:var(--muted);}
+  .mock-tab.active{color:var(--blue);font-weight:600;border-bottom:2px solid var(--blue);padding-bottom:10px;margin-bottom:-11px;}
+  .mock-heading{font-family:var(--serif);font-weight:600;font-size:14.5px;margin-bottom:12px;}
+  .mock-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1efe8;}
+  .mock-row:last-child{border-bottom:none;}
+  .mock-row-text{flex:1;font-size:11.5px;color:var(--ink-soft);line-height:1.4;}
+  .mock-row-text b{color:var(--ink);font-size:12.5px;}
+  .mock-tooltip{
+    position:absolute;top:8px;right:-4px;background:var(--blue);color:#fff;
+    font-size:11.5px;line-height:1.4;padding:10px 14px;border-radius:10px;
+    box-shadow:0 8px 20px rgba(58,90,155,0.3);max-width:130px;
+  }
+  @media (max-width:879px){ .mock-wrap{display:none;} }
+
+  .trust-section{
+    margin-top:80px;padding:56px 0 8px;border-top:1px solid var(--line);text-align:center;
+  }
+  .trust-head{font-family:var(--serif);font-size:30px;font-weight:600;margin:0 0 12px;}
+  .trust-head em{font-style:italic;}
+  .trust-sub{color:var(--muted);font-size:14.5px;max-width:56ch;margin:0 auto 44px;line-height:1.6;}
+  .steps-row{display:grid;grid-template-columns:1fr;gap:32px;}
+  @media (min-width:760px){ .steps-row{grid-template-columns:repeat(5, 1fr);gap:20px;} }
+  .step-col{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .step-title{font-weight:600;font-size:14px;}
+  .step-caption{font-size:12.5px;color:var(--muted);max-width:22ch;line-height:1.4;}
+
+  .try-section{margin-top:56px;padding-top:8px;text-align:center;}
+  .try-section .demo-card{text-align:left;max-width:640px;margin:0 auto;}
+
+  .faq-section{margin-top:56px;padding:0 0 20px;max-width:720px;}
+  .faq-item{border-bottom:1px solid var(--line);padding:16px 0;cursor:pointer;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14.5px;}
+  .faq-icon{color:var(--muted);font-size:18px;font-weight:400;}
+  .faq-a{margin-top:10px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;max-width:60ch;}
 
   .demo-card{
     position:relative;margin-top:0;border:1px solid var(--line);border-radius:10px;
@@ -332,6 +414,16 @@ function Icon({name, color="currentColor", size=16}) {
     lock: <path d="M4 7V5a4 4 0 018 0v2m-9 0h10v7H3V7z" stroke={color} strokeWidth="1.4" fill="none" strokeLinejoin="round"/>,
     trash: <path d="M3 4h10M6 4V2.5h4V4m-6 0l.6 8.5A1 1 0 005.6 13.5h4.8a1 1 0 001-1L12 4" stroke={color} strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round"/>,
     x: <path d="M4 4l8 8M12 4l-8 8" stroke={color} strokeWidth="1.6" fill="none" strokeLinecap="round"/>,
+    upload: <path d="M8 11V3m0 0L5 6m3-3l3 3M3 12v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke={color} strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round"/>,
+    sparkle: <path d="M8 2l1.2 3.8L13 7l-3.8 1.2L8 12l-1.2-3.8L3 7l3.8-1.2L8 2zM13 11l.6 1.9L15.5 13.5l-1.9.6-.6 1.9-.6-1.9-1.9-.6 1.9-.6.6-1.9z" fill={color}/>,
+    eye: <path d="M1 8s2.5-4.5 7-4.5S15 8 15 8s-2.5 4.5-7 4.5S1 8 1 8z M8 10a2 2 0 100-4 2 2 0 000 4z" stroke={color} strokeWidth="1.3" fill="none" strokeLinejoin="round"/>,
+    shield: <path d="M8 1.5l5 1.8v4c0 3.5-2.2 5.8-5 7-2.8-1.2-5-3.5-5-7v-4l5-1.8z" stroke={color} strokeWidth="1.3" fill="none" strokeLinejoin="round"/>,
+    bolt: <path d="M9 1L3 9h4l-1 6 6-8H8l1-6z" stroke={color} strokeWidth="1.2" fill="none" strokeLinejoin="round"/>,
+    play: <path d="M4.5 3v10l8-5-8-5z" fill={color}/>,
+    chevron: <path d="M6 4l4 4-4 4" stroke={color} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>,
+    dollar: <path d="M8 2v12M11 5.5c0-1.4-1.3-2.5-3-2.5S5 4.1 5 5.5 6.3 8 8 8s3 1.1 3 2.5S9.7 13 8 13s-3-1.1-3-2.5" stroke={color} strokeWidth="1.3" fill="none" strokeLinecap="round"/>,
+    calendar: <path d="M2.5 4h11v9.5h-11V4zM2.5 6.5h11M5.5 2v3M10.5 2v3" stroke={color} strokeWidth="1.3" fill="none" strokeLinecap="round"/>,
+    message: <path d="M2 3h12v8H6l-3 3v-3H2V3z" stroke={color} strokeWidth="1.3" fill="none" strokeLinejoin="round"/>,
   };
   return <svg width={size} height={size} viewBox="0 0 16 16">{paths[name]}</svg>;
 }
@@ -590,6 +682,13 @@ Contact: [Insert confirmed support or legal contact email]`
 const DEMO_CLAUSE = "\u201cIN NO EVENT SHALL EITHER PARTY'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT, WHETHER IN CONTRACT, TORT, OR OTHERWISE, EXCEED THE TOTAL FEES PAID OR PAYABLE BY THE DISADVANTAGED PARTY IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM, AND IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS OR LOST DATA, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.\u201d";
 const DEMO_PLAIN = "If something goes wrong, the most either side can be forced to pay is whatever you paid them over the past year \u2014 even if the actual damage is much bigger. And neither side can be sued for knock-on losses like lost profits or lost data, no matter how predictable those losses were.";
 
+const FAQS = [
+  { q: "Is CLARIFY a substitute for a lawyer?", a: "No. CLARIFY is an informational tool that explains contract wording in plain language. It doesn't determine whether a contract is valid, enforceable, or right for your situation, and it isn't a substitute for advice from a qualified legal professional." },
+  { q: "What kinds of contracts can I upload?", a: "Any kind: leases, service agreements, NDAs, employment contracts, vendor terms, and more. CLARIFY isn't limited to one contract type." },
+  { q: "Is my document stored anywhere?", a: "Your document is processed for your current session only. It isn't saved to an account or a document history. See the Privacy Policy for full details on retention and third-party processing." },
+  { q: "Do I need to create an account?", a: "No account is required to use CLARIFY." },
+];
+
 function App() {
   const [view, setView] = useState("welcome"); // welcome | upload | processing | results | ended
   const [apiBase, setApiBase] = useState("https://clarify-backend-fgz1.onrender.com");
@@ -610,6 +709,7 @@ function App() {
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [legalDoc, setLegalDoc] = useState(null); // null | "privacy" | "terms" | "disclaimer"
   const [demoOn, setDemoOn] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -733,7 +833,12 @@ function App() {
           </div>
         ) : (
           <div className="session-controls">
-            <button className="btn secondary">Log In</button>
+            <nav className="topnav">
+              <a href="#how-it-works">How It Works</a>
+              <a href="#features">Features</a>
+              <a href="#faqs">FAQs</a>
+            </nav>
+            <button className="btn pill">Log In</button>
           </div>
         )}
       </div>
@@ -743,36 +848,126 @@ function App() {
 
           {view === "welcome" && (
             <div className="welcome-hero">
-              <h1>Understand the fine print.<br/>Before you sign.</h1>
+              <h1>Understand the fine print.<br/>Before <span className="accent">you sign.</span></h1>
               <p className="subhead">Save time, save money, and avoid the disputes that come from clauses no one really read.</p>
 
               <div className="welcome-grid">
                 <div>
-                  <p className="lede">Contracts shouldn't leave you guessing. Upload your document and CLARIFY now!</p>
-                  <p className="lede">Get a clear, plain-language breakdown of key costs, deadlines, responsibilities, and clauses that deserve a closer look.</p>
-                  <p className="lede">No complicated prompts. No lengthy back-and-forth. Just clearer answers, in seconds.</p>
-                  <div className="principles">
-                    <div className="principle"><span className="icon-badge green"><Icon name="check" color="#2f6f4e"/></span> Traces every key finding back to the exact page and clause it came from.</div>
-                    <div className="principle"><span className="icon-badge amber"><Icon name="check" color="#b3720f"/></span> Flags what's risky or unclear, but never tells you a clause is safe to sign.</div>
-                    <div className="principle"><span className="icon-badge blue"><Icon name="check" color="#3a5a9b"/></span> Works across any kind of contract: leases, service agreements, NDAs, vendor terms, and more.</div>
+                  <p className="lede">Contracts shouldn't leave you guessing. Upload your document and CLARIFY now! Get a clear, plain-language breakdown of key costs, deadlines, responsibilities, and clauses that deserve a closer look.</p>
+
+                  <div className="chip-row">
+                    <span className="chip"><Icon name="check" color="#2f6f4e" size={13}/> No complicated prompts</span>
+                    <span className="chip"><Icon name="check" color="#2f6f4e" size={13}/> No back-and-forth</span>
+                    <span className="chip"><Icon name="check" color="#2f6f4e" size={13}/> No account needed</span>
                   </div>
 
-                  <div style={{marginTop:32}}>
+                  <div className="cta-row">
                     <button className="btn" disabled={starting} onClick={startSession}>{starting ? "Starting…" : "Get started"}</button>
+                    <a className="how-link" href="#how-it-works">
+                      <span className="play-dot"><Icon name="play" color="#182233" size={12}/></span>
+                      <span>See how it works<br/><span className="how-sub">1 min</span></span>
+                    </a>
                   </div>
-                  {error && <div className="err-box">{error}</div>}
+                  <p className="lock-note"><Icon name="lock" color="#8a8677" size={13}/> Your document is processed for your session and isn't saved to a document history.</p>
                 </div>
 
-                <div className="demo-card">
-                  <div className="demo-head">
-                    <span className={"demo-tag" + (demoOn ? " plain" : "")}>{demoOn ? "In plain language" : "Straight from the contract"}</span>
+                <div className="mock-wrap">
+                  <div className="mock-back">
+                    <div className="mock-back-title">Service Agreement</div>
+                    <div className="mock-line" style={{width:"88%"}}></div>
+                    <div className="mock-line" style={{width:"95%"}}></div>
+                    <div className="mock-line accent-blue" style={{width:"70%"}}></div>
+                    <div className="mock-line" style={{width:"92%"}}></div>
+                    <div className="mock-line accent-amber" style={{width:"60%"}}></div>
+                    <div className="mock-line" style={{width:"85%"}}></div>
+                    <div className="mock-line" style={{width:"90%"}}></div>
+                    <div className="mock-line" style={{width:"78%"}}></div>
                   </div>
-                  <p className="demo-text" key={demoOn ? "plain" : "clause"}>{demoOn ? DEMO_PLAIN : DEMO_CLAUSE}</p>
-                  <button className="demo-toggle" onClick={() => setDemoOn(d => !d)}>
-                    {demoOn ? "← See the original clause" : "See what CLARIFY does with it →"}
-                  </button>
+                  <div className="mock-front">
+                    <div className="mock-front-head">
+                      <span className="brand-mark" style={{fontSize:15}}>CLARIFY</span>
+                      <span className="mock-front-doc">Service Agreement</span>
+                    </div>
+                    <div className="mock-tabs">
+                      <span className="mock-tab active">Summary</span>
+                      <span className="mock-tab">Costs</span>
+                      <span className="mock-tab">Deadlines</span>
+                      <span className="mock-tab">Responsibilities</span>
+                      <span className="mock-tab">Clauses</span>
+                    </div>
+                    <div className="mock-heading">Key Takeaways</div>
+                    <div className="mock-row"><span className="icon-badge green sm"><Icon name="dollar" color="#2f6f4e" size={13}/></span><span className="mock-row-text"><b>Costs</b><br/>Fees, charges, and payment terms</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
+                    <div className="mock-row"><span className="icon-badge blue sm"><Icon name="calendar" color="#3a5a9b" size={13}/></span><span className="mock-row-text"><b>Deadlines</b><br/>Key dates, notice periods, and term</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
+                    <div className="mock-row"><span className="icon-badge amber sm"><Icon name="check" color="#b3720f" size={13}/></span><span className="mock-row-text"><b>Clauses to Review</b><br/>Terms that may need a closer look</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
+                    <div className="mock-row"><span className="icon-badge blue sm"><Icon name="message" color="#3a5a9b" size={13}/></span><span className="mock-row-text"><b>Questions to Ask</b><br/>Before you sign</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
+                  </div>
+                  <div className="mock-tooltip">From legal jargon<br/>to plain language.</div>
                 </div>
               </div>
+
+              {error && <div className="err-box" style={{marginTop:20}}>{error}</div>}
+            </div>
+          )}
+
+          {view === "welcome" && (
+            <div className="trust-section" id="how-it-works">
+              <h2 className="trust-head"><em>More clarity.</em> Less uncertainty.</h2>
+              <p className="trust-sub">CLARIFY turns complex contracts into clear, practical insights, so you can make informed decisions with confidence, not guesswork.</p>
+              <div className="steps-row">
+                <div className="step-col">
+                  <Icon name="upload" color="#3a5a9b" size={26}/>
+                  <div className="step-title">Upload your contract</div>
+                  <div className="step-caption">It only takes a moment.</div>
+                </div>
+                <div className="step-col">
+                  <Icon name="sparkle" color="#3a5a9b" size={26}/>
+                  <div className="step-title">Get a clear breakdown</div>
+                  <div className="step-caption">Plain language, not legal jargon.</div>
+                </div>
+                <div className="step-col">
+                  <Icon name="eye" color="#3a5a9b" size={26}/>
+                  <div className="step-title">See what matters</div>
+                  <div className="step-caption">Costs, dates, obligations, and clauses to check.</div>
+                </div>
+                <div className="step-col">
+                  <Icon name="shield" color="#3a5a9b" size={26}/>
+                  <div className="step-title">Understand the risks</div>
+                  <div className="step-caption">Spot what needs a closer look.</div>
+                </div>
+                <div className="step-col">
+                  <Icon name="bolt" color="#3a5a9b" size={26}/>
+                  <div className="step-title">Make a confident decision</div>
+                  <div className="step-caption">Know what you're signing.</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {view === "welcome" && (
+            <div className="try-section" id="features">
+              <h2 className="trust-head" style={{fontSize:24}}>See it in action</h2>
+              <p className="trust-sub" style={{marginBottom:24}}>A real clause, before and after CLARIFY explains it.</p>
+              <div className="demo-card">
+                <div className="demo-head">
+                  <span className={"demo-tag" + (demoOn ? " plain" : "")}>{demoOn ? "In plain language" : "Straight from the contract"}</span>
+                </div>
+                <p className="demo-text" key={demoOn ? "plain" : "clause"}>{demoOn ? DEMO_PLAIN : DEMO_CLAUSE}</p>
+                <button className="demo-toggle" onClick={() => setDemoOn(d => !d)}>
+                  {demoOn ? "← See the original clause" : "See what CLARIFY does with it →"}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {view === "welcome" && (
+            <div className="faq-section" id="faqs">
+              <h2 className="trust-head" style={{fontSize:24, marginBottom:22}}>Frequently asked questions</h2>
+              {FAQS.map((f, i) => (
+                <div className="faq-item" key={i} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                  <div className="faq-q">{f.q}<span className="faq-icon">{openFaq === i ? "−" : "+"}</span></div>
+                  {openFaq === i && <div className="faq-a">{f.a}</div>}
+                </div>
+              ))}
             </div>
           )}
 
