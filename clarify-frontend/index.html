@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CLARIFY: Understand before you sign</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#211f19;
     --ink-soft:#4a4335;
-    --paper:#E7DBBF;
-    --panel:#FFFDF6;
-    --muted:#8a7b5a;
-    --line:#d1bd8d;
+    --paper:#EFEAE0;
+    --panel:#FFFFFF;
+    --muted:#847d6c;
+    --line:#ddd6c4;
     --amber:#96591a;
     --amber-bg:#f2e2c4;
     --green:#3f5d34;
@@ -22,8 +22,10 @@
     --red-bg:#f1ddd6;
     --blue:#3c4f66;
     --blue-bg:#e3e8ed;
-    --stamp:#a8431f;
-    --stamp-bg:#f2ddc7;
+    --gold:#a9822f;
+    --gold-bg:#f0e6cc;
+    --cream:#f4efe1;
+    --cream-soft:#c9c0a4;
     --serif:'Fraunces', Georgia, serif;
     --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
@@ -48,7 +50,7 @@
     position:sticky;top:0;z-index:20;
   }
   .brand{display:flex;align-items:baseline;gap:12px;}
-  .brand-mark{font-family:var(--serif);font-style:italic;font-weight:600;font-size:22px;letter-spacing:0.2px;color:var(--ink);}
+  .brand-mark{font-family:'Source Serif 4', Georgia, serif;font-weight:600;font-size:22px;letter-spacing:0.5px;color:var(--ink);}
   .brand-tag{font-size:12.5px;color:var(--muted);font-style:italic;font-family:var(--serif);}
   .session-controls{display:flex;align-items:center;gap:14px;}
   .session-pill{
@@ -81,31 +83,44 @@
   small.foot{color:var(--muted);font-size:12.5px;}
 
   /* welcome */
-  .col:has(.welcome-hero){max-width:960px;}
   .welcome-hero{animation:heroIn .45s ease;}
   @keyframes heroIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:7px;
-    font-size:11.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-    color:var(--blue);background:var(--blue-bg);padding:6px 13px;border-radius:20px;
-    margin-bottom:20px;
+  /* ---- Dark hero band (full-bleed) ---- */
+  .hero-band{
+    background:var(--ink);
+    width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;
+    padding:84px 24px 64px;margin-top:-48px;margin-bottom:64px;
   }
-  .dot2{width:5px;height:5px;border-radius:50%;background:var(--blue);display:inline-block;}
-
-  .welcome-hero h1{font-size:44px;font-weight:600;line-height:1.14;letter-spacing:-0.015em;margin:0 0 10px;}
-  .subhead{font-size:13.5px;color:var(--muted);letter-spacing:0.01em;margin:0 0 28px;}
-
-  .welcome-grid{display:grid;grid-template-columns:1fr;gap:36px;}
-  @media (min-width:880px){
-    .welcome-grid{grid-template-columns:1.15fr 0.85fr;gap:52px;align-items:start;}
-    .welcome-grid .demo-card{position:sticky;top:96px;}
+  .hero-band-inner{max-width:680px;margin:0 auto;}
+  .hero-kicker{font-family:var(--mono);font-size:12.5px;color:var(--gold);margin-bottom:20px;}
+  .hero-band h1{
+    font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.08;
+    letter-spacing:-0.02em;color:var(--cream);margin:0 0 20px;max-width:15ch;
   }
+  .hero-band .subhead{font-size:16px;line-height:1.6;color:var(--cream-soft);max-width:48ch;margin:0 0 32px;letter-spacing:0;}
+  .hero-band .btn{background:var(--gold);color:#23200f;border-color:var(--gold);}
+  .hero-band .btn:hover{opacity:1;box-shadow:0 4px 16px rgba(169,130,47,0.35);}
+  .hero-band .how-link{color:var(--cream);}
+  .hero-band .play-dot{background:transparent;border-color:rgba(244,239,225,0.3);}
+  .hero-band .lock-note{color:var(--cream-soft);}
 
-  .principles{margin-top:28px;display:grid;gap:14px;}
-  .principle{display:flex;gap:12px;font-size:14px;color:var(--ink-soft);align-items:center;}
+  /* The signature moment: a real typographic transformation, not an illustration */
+  .transform-demo{margin-top:48px;padding-top:36px;border-top:1px solid rgba(244,239,225,0.14);}
+  .transform-before{
+    font-family:var(--mono);font-size:12.5px;line-height:1.95;letter-spacing:0.01em;
+    color:rgba(244,239,225,0.5);max-width:54ch;
+  }
+  .transform-before .flagged{color:var(--cream);border-bottom:2px solid var(--gold);padding-bottom:1px;}
+  .transform-arrow{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--gold);margin:18px 0;}
+  .transform-after{font-family:var(--serif);font-size:22px;line-height:1.5;color:var(--cream);max-width:44ch;}
+
+  /* ---- Light intro strip beneath the hero ---- */
+  .intro-row{display:flex;flex-direction:column;gap:22px;}
+  .principles{display:flex;flex-wrap:wrap;gap:24px;margin-top:6px;}
+  .principle{display:flex;gap:9px;font-size:13.5px;color:var(--ink-soft);align-items:center;}
   .icon-badge{
-    flex-shrink:0;width:26px;height:26px;border-radius:50%;
+    flex-shrink:0;width:24px;height:24px;border-radius:50%;
     display:flex;align-items:center;justify-content:center;
   }
   .icon-badge.green{background:var(--green-bg);}
@@ -133,45 +148,13 @@
   .how-sub{font-size:11.5px;font-weight:400;color:var(--muted);}
   .lock-note{
     display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);
-    margin-top:18px;
+    margin-top:6px;
   }
 
-  .hero-doc-wrap{position:relative;min-height:400px;padding:10px 4px;}
-  .hero-back{
-    position:absolute;top:8px;left:4%;width:76%;background:var(--panel);
-    border:1px solid var(--line);padding:22px 20px;
-    transform:rotate(-3deg);
+  @media (max-width:640px){
+    .hero-band h1{font-size:36px;}
   }
-  .hero-back-kicker{font-family:var(--mono);font-weight:600;font-size:11.5px;margin-bottom:16px;color:var(--muted);letter-spacing:0.03em;}
-  .hero-back-line{height:6px;border-radius:1px;background:#ecdfc2;margin-bottom:10px;}
-  .hero-back-line.stamp{background:var(--stamp-bg);}
-  .hero-back-line.amber{background:var(--amber-bg);}
-  .hero-front{
-    position:relative;background:var(--panel);border:1px solid var(--line);
-    padding:22px 24px 24px;transform:rotate(1.6deg);
-    max-width:88%;margin-left:auto;
-  }
-  .hero-front-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-  .hero-front-brand{font-family:var(--serif);font-style:italic;font-weight:600;font-size:15px;color:var(--ink);}
-  .hero-front-doc{font-size:11px;color:var(--muted);font-family:var(--mono);}
-  .hero-tabs{display:flex;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px;flex-wrap:wrap;}
-  .hero-tab{font-family:var(--mono);font-size:10.5px;color:var(--muted);}
-  .hero-tab.active{color:var(--stamp);font-weight:600;border-bottom:2px solid var(--stamp);padding-bottom:10px;margin-bottom:-11px;}
-  .hero-heading{font-family:var(--serif);font-weight:600;font-size:14.5px;margin-bottom:12px;}
-  .hero-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #efe3c4;}
-  .hero-row:last-child{border-bottom:none;}
-  .hero-row-icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-  .hero-row-icon.green{background:var(--green-bg);}
-  .hero-row-icon.blue{background:var(--blue-bg);}
-  .hero-row-icon.amber{background:var(--amber-bg);}
-  .hero-row-text{flex:1;font-size:11.5px;color:var(--ink-soft);line-height:1.4;}
-  .hero-row-text b{color:var(--ink);font-size:12.5px;}
-  .hero-callout{
-    position:absolute;top:2px;right:-22px;background:var(--stamp);color:#fff;
-    font-family:var(--serif);font-style:italic;font-size:12px;line-height:1.4;
-    padding:10px 14px;max-width:134px;transform:rotate(2deg);z-index:2;
-  }
-  @media (max-width:879px){ .hero-doc-wrap{display:none;} }
+
 
   .trust-section{
     margin-top:80px;padding:56px 0 8px;border-top:1px solid var(--line);text-align:center;
@@ -195,7 +178,6 @@
   .step-caption{font-size:12.5px;color:var(--muted);max-width:22ch;line-height:1.4;}
 
   .try-section{margin-top:56px;padding-top:8px;text-align:center;}
-  .try-section .demo-card{text-align:left;max-width:640px;margin:0 auto;}
 
   .faq-section{margin-top:56px;padding:0 0 20px;max-width:720px;}
   .faq-item{border-bottom:1px solid var(--line);padding:16px 0;cursor:pointer;}
@@ -203,36 +185,22 @@
   .faq-icon{color:var(--muted);font-size:18px;font-weight:400;}
   .faq-a{margin-top:10px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;max-width:60ch;}
 
-  .demo-card{
-    position:relative;margin-top:0;border:1px solid var(--line);border-radius:3px;
-    background:var(--panel);padding:30px 28px 26px;
+  .preview-card{
+    text-align:left;max-width:560px;margin:0 auto;border:1px solid var(--line);
+    background:var(--panel);padding:26px 28px 24px;
   }
-  .demo-card::before{
-    content:"\201C";position:absolute;top:-2px;left:22px;
-    font-family:var(--serif);font-size:64px;line-height:1;color:var(--line);
-    pointer-events:none;
-  }
-  .demo-head{margin-bottom:14px;}
-  .demo-tag{
-    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:0.04em;
-    padding:4px 10px;border-radius:2px;background:var(--amber-bg);color:var(--amber);
-    border:1px solid currentColor;
-    transition:background .2s ease,color .2s ease;
-  }
-  .demo-tag.plain{background:var(--green-bg);color:var(--green);}
-  .demo-text{
-    font-family:var(--serif);font-size:17px;line-height:1.6;color:var(--ink);
-    margin:0 0 20px;min-height:120px;
-    animation:fadein .25s ease;
-  }
-  .demo-text.legalese{font-family:var(--mono);font-size:13.5px;line-height:1.75;letter-spacing:-0.01em;}
-  @keyframes fadein{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
-  .demo-toggle{
-    background:none;border:none;padding:0;cursor:pointer;font-family:var(--sans);
-    font-size:13.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px;
-    transition:gap .15s ease;
-  }
-  .demo-toggle:hover{gap:9px;color:var(--blue);}
+  .preview-tabs{display:flex;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:16px;flex-wrap:wrap;}
+  .preview-tab{font-family:var(--mono);font-size:11px;color:var(--muted);}
+  .preview-tab.active{color:var(--ink);font-weight:600;border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:-11px;}
+  .preview-heading{font-family:var(--serif);font-weight:600;font-size:15px;margin-bottom:12px;}
+  .preview-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .preview-row:last-child{border-bottom:none;}
+  .preview-row-icon{flex-shrink:0;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .preview-row-icon.green{background:var(--green-bg);}
+  .preview-row-icon.blue{background:var(--blue-bg);}
+  .preview-row-icon.amber{background:var(--amber-bg);}
+  .preview-row-text{flex:1;font-size:12.5px;color:var(--ink-soft);line-height:1.4;}
+  .preview-row-text b{color:var(--ink);font-size:13.5px;}
 
   /* upload */
   .dropzone{
@@ -303,6 +271,7 @@
     padding:10px 14px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink-soft);
   }
   .evidence .loc{font-weight:600;color:var(--ink);margin-right:6px;font-family:var(--sans);}
+  .quote-flag{margin-top:8px;font-family:var(--sans);font-size:11.5px;color:var(--amber);}
   .finding .ask{margin-top:8px;font-size:13.5px;}
   .finding .ask b{color:var(--ink);}
 
@@ -692,9 +661,6 @@ Contact: [Insert confirmed support or legal contact email]`
   }
 };
 
-const DEMO_CLAUSE = "\u201cIN NO EVENT SHALL EITHER PARTY'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT, WHETHER IN CONTRACT, TORT, OR OTHERWISE, EXCEED THE TOTAL FEES PAID OR PAYABLE BY THE DISADVANTAGED PARTY IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM, AND IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS OR LOST DATA, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.\u201d";
-const DEMO_PLAIN = "If something goes wrong, the most either side can be forced to pay is whatever you paid them over the past year \u2014 even if the actual damage is much bigger. And neither side can be sued for knock-on losses like lost profits or lost data, no matter how predictable those losses were.";
-
 const FAQS = [
   { q: "Is CLARIFY a substitute for a lawyer?", a: "No. CLARIFY is an informational tool that explains contract wording in plain language. It doesn't determine whether a contract is valid, enforceable, or right for your situation, and it isn't a substitute for advice from a qualified legal professional." },
   { q: "What kinds of contracts can I upload?", a: "Any kind: leases, service agreements, NDAs, employment contracts, vendor terms, and more. CLARIFY isn't limited to one contract type." },
@@ -720,7 +686,6 @@ function App() {
   const [processingStep, setProcessingStep] = useState(0);
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [legalDoc, setLegalDoc] = useState(null); // null | "privacy" | "terms" | "disclaimer"
-  const [demoOn, setDemoOn] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -860,63 +825,38 @@ function App() {
 
           {view === "welcome" && (
             <div className="welcome-hero">
-              <h1>Understand the fine print.<br/>Before you sign.</h1>
-              <p className="subhead">Save time, save money, and avoid the disputes that come from clauses no one really read.</p>
-
-              <div className="welcome-grid">
-                <div>
-                  <p className="lede">Contracts shouldn't leave you guessing. Upload your document and CLARIFY now! Get a clear, plain-language breakdown of key costs, deadlines, responsibilities, and clauses that deserve a closer look.</p>
-
-                  <div className="chip-row">
-                    <span className="chip"><Icon name="check" color="#3f5d34" size={13}/> No complicated prompts</span>
-                    <span className="chip"><Icon name="check" color="#3f5d34" size={13}/> No back-and-forth</span>
-                    <span className="chip"><Icon name="check" color="#3f5d34" size={13}/> No account needed</span>
-                  </div>
+              <div className="hero-band">
+                <div className="hero-band-inner">
+                  <h1>Understand the fine print. Before you sign.</h1>
+                  <p className="subhead">Save time, save money, and avoid the disputes that come from clauses no one really read.</p>
 
                   <div className="cta-row">
                     <button className="btn" disabled={starting} onClick={startSession}>{starting ? "Starting…" : "Get started"}</button>
                     <a className="how-link" href="#how-it-works">
-                      <span className="play-dot"><Icon name="play" color="#211f19" size={12}/></span>
+                      <span className="play-dot"><Icon name="play" color="#f4efe1" size={12}/></span>
                       <span>See how it works<br/><span className="how-sub">1 min</span></span>
                     </a>
                   </div>
-                  <p className="lock-note"><Icon name="lock" color="#8a7b5a" size={13}/> Your document is processed for your session and isn't saved to a document history.</p>
-                </div>
 
-                <div className="hero-doc-wrap">
-                  <div className="hero-back">
-                    <div className="hero-back-kicker">Service Agreement</div>
-                    <div className="hero-back-line" style={{width:"88%"}}></div>
-                    <div className="hero-back-line" style={{width:"95%"}}></div>
-                    <div className="hero-back-line stamp" style={{width:"70%"}}></div>
-                    <div className="hero-back-line" style={{width:"92%"}}></div>
-                    <div className="hero-back-line amber" style={{width:"60%"}}></div>
-                    <div className="hero-back-line" style={{width:"85%"}}></div>
-                    <div className="hero-back-line" style={{width:"90%"}}></div>
-                    <div className="hero-back-line" style={{width:"78%"}}></div>
+                  <div className="transform-demo">
+                    <div className="transform-before">NOTWITHSTANDING ANY CONDITIONS CONTAINED HEREIN, LESSOR RESERVES <span className="flagged">SOLE AND ABSOLUTE DISCRETION</span> TO TERMINATE THIS AGREEMENT UPON THIRTY (30) DAYS' WRITTEN NOTICE TO LESSEE.</div>
+                    <div className="transform-arrow">↓ what that actually means</div>
+                    <div className="transform-after">Your landlord can end this lease at any time, for any reason, with just 30 days' notice.</div>
                   </div>
-                  <div className="hero-front">
-                    <div className="hero-front-head">
-                      <span className="hero-front-brand">CLARIFY</span>
-                    </div>
-                    <div className="hero-tabs">
-                      <span className="hero-tab active">Summary</span>
-                      <span className="hero-tab">Costs</span>
-                      <span className="hero-tab">Deadlines</span>
-                      <span className="hero-tab">Responsibilities</span>
-                      <span className="hero-tab">Clauses</span>
-                    </div>
-                    <div className="hero-heading">Key Takeaways</div>
-                    <div className="hero-row"><span className="hero-row-icon green"><Icon name="dollar" color="#3f5d34" size={13}/></span><span className="hero-row-text"><b>Costs</b><br/>Fees, charges, and payment terms</span><Icon name="chevron" color="#b7a878" size={13}/></div>
-                    <div className="hero-row"><span className="hero-row-icon blue"><Icon name="calendar" color="#3c4f66" size={13}/></span><span className="hero-row-text"><b>Deadlines</b><br/>Key dates, notice periods, and term</span><Icon name="chevron" color="#b7a878" size={13}/></div>
-                    <div className="hero-row"><span className="hero-row-icon amber"><Icon name="check" color="#96591a" size={13}/></span><span className="hero-row-text"><b>Clauses to Review</b><br/>Terms that may need a closer look</span><Icon name="chevron" color="#b7a878" size={13}/></div>
-                    <div className="hero-row"><span className="hero-row-icon blue"><Icon name="message" color="#3c4f66" size={13}/></span><span className="hero-row-text"><b>Questions to Ask</b><br/>Before you sign</span><Icon name="chevron" color="#b7a878" size={13}/></div>
-                    <div className="hero-callout">From legal jargon<br/>to plain language.</div>
-                  </div>
+
+                  {error && <div className="err-box" style={{marginTop:24}}>{error}</div>}
                 </div>
               </div>
 
-              {error && <div className="err-box" style={{marginTop:20}}>{error}</div>}
+              <div className="intro-row">
+                <p className="lede">Contracts shouldn't leave you guessing. Upload your document and get a clear, plain-language breakdown of key costs, deadlines, responsibilities, and clauses that deserve a closer look.</p>
+                <div className="principles">
+                  <span className="principle"><Icon name="check" color="#3f5d34" size={14}/> No complicated prompts</span>
+                  <span className="principle"><Icon name="check" color="#3f5d34" size={14}/> No back-and-forth</span>
+                  <span className="principle"><Icon name="check" color="#3f5d34" size={14}/> No account needed</span>
+                </div>
+                <p className="lock-note"><Icon name="lock" color="#847d6c" size={13}/> Your document is processed for your session and isn't saved to a document history.</p>
+              </div>
             </div>
           )}
 
@@ -957,15 +897,20 @@ function App() {
           {view === "welcome" && (
             <div className="try-section" id="features">
               <h2 className="trust-head" style={{fontSize:24}}>See it in action</h2>
-              <p className="trust-sub" style={{marginBottom:24}}>A real clause, before and after CLARIFY explains it.</p>
-              <div className="demo-card">
-                <div className="demo-head">
-                  <span className={"demo-tag" + (demoOn ? " plain" : "")}>{demoOn ? "In plain language" : "Straight from the contract"}</span>
+              <p className="trust-sub" style={{marginBottom:24}}>A look at what your breakdown covers once CLARIFY finishes reading your contract.</p>
+              <div className="preview-card">
+                <div className="preview-tabs">
+                  <span className="preview-tab active">Summary</span>
+                  <span className="preview-tab">Costs</span>
+                  <span className="preview-tab">Deadlines</span>
+                  <span className="preview-tab">Responsibilities</span>
+                  <span className="preview-tab">Clauses</span>
                 </div>
-                <p className={"demo-text" + (demoOn ? "" : " legalese")} key={demoOn ? "plain" : "clause"}>{demoOn ? DEMO_PLAIN : DEMO_CLAUSE}</p>
-                <button className="demo-toggle" onClick={() => setDemoOn(d => !d)}>
-                  {demoOn ? "← See the original clause" : "See what CLARIFY does with it →"}
-                </button>
+                <div className="preview-heading">Key Takeaways</div>
+                <div className="preview-row"><span className="preview-row-icon green"><Icon name="dollar" color="#3f5d34" size={13}/></span><span className="preview-row-text"><b>Costs</b><br/>Fees, charges, and payment terms</span></div>
+                <div className="preview-row"><span className="preview-row-icon blue"><Icon name="calendar" color="#3c4f66" size={13}/></span><span className="preview-row-text"><b>Deadlines</b><br/>Key dates, notice periods, and term</span></div>
+                <div className="preview-row"><span className="preview-row-icon amber"><Icon name="check" color="#96591a" size={13}/></span><span className="preview-row-text"><b>Clauses to Review</b><br/>Terms flagged as worth checking before you sign</span></div>
+                <div className="preview-row"><span className="preview-row-icon blue"><Icon name="message" color="#3c4f66" size={13}/></span><span className="preview-row-text"><b>Questions to Ask</b><br/>Ready-made questions for the other party</span></div>
               </div>
             </div>
           )}
@@ -1060,7 +1005,10 @@ function App() {
                         <div className="finding-title">{f.title}<span className={"status-tag " + statusClass(f.status)}>{f.status}</span></div>
                         <p>{f.explanation}</p>
                         <p className="why">Why it matters: {f.whyItMatters}</p>
-                        <div className="evidence"><span className="loc">Page {f.page}, {f.clause}</span>"{f.quote}"</div>
+                        <div className="evidence">
+                          <span className="loc">Page {f.page}, {f.clause}</span>"{f.quote}"
+                          {f.quoteVerified === false && <div className="quote-flag">Couldn't verify this quote against the document text</div>}
+                        </div>
                         {f.question && <p className="ask"><b>Question to ask:</b> {f.question}</p>}
                       </div>
                     ))}
@@ -1179,4 +1127,3 @@ function App() {
 ReactDOM.createRoot(document.getElementById("app")).render(<App />);
 </script>
 </body>
-</html>
