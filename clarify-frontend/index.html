@@ -5,25 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CLARIFY: Understand before you sign</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#182233;
-    --ink-soft:#3a4459;
-    --paper:#FBFAF6;
-    --panel:#FFFFFF;
-    --muted:#6b7280;
-    --line:#e3e0d6;
-    --amber:#b3720f;
-    --amber-bg:#fbf1e0;
-    --green:#2f6f4e;
-    --green-bg:#e9f3ee;
-    --red:#a83f3f;
-    --red-bg:#f9ecec;
-    --blue:#3a5a9b;
-    --blue-bg:#eaeff8;
-    --serif:'Source Serif 4', Georgia, serif;
+    --ink:#211f19;
+    --ink-soft:#4a4335;
+    --paper:#E7DBBF;
+    --panel:#FFFDF6;
+    --muted:#8a7b5a;
+    --line:#d1bd8d;
+    --amber:#96591a;
+    --amber-bg:#f2e2c4;
+    --green:#3f5d34;
+    --green-bg:#e6ecd9;
+    --red:#8c332a;
+    --red-bg:#f1ddd6;
+    --blue:#3c4f66;
+    --blue-bg:#e3e8ed;
+    --stamp:#a8431f;
+    --stamp-bg:#f2ddc7;
+    --serif:'Fraunces', Georgia, serif;
     --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -45,7 +48,7 @@
     position:sticky;top:0;z-index:20;
   }
   .brand{display:flex;align-items:baseline;gap:12px;}
-  .brand-mark{font-family:var(--serif);font-weight:600;font-size:22px;letter-spacing:0.5px;color:var(--ink);}
+  .brand-mark{font-family:var(--serif);font-style:italic;font-weight:600;font-size:22px;letter-spacing:0.2px;color:var(--ink);}
   .brand-tag{font-size:12.5px;color:var(--muted);font-style:italic;font-family:var(--serif);}
   .session-controls{display:flex;align-items:center;gap:14px;}
   .session-pill{
@@ -59,7 +62,7 @@
     background:var(--ink);color:#fff;cursor:pointer;
     transition:opacity .15s ease, transform .15s ease, box-shadow .15s ease;
   }
-  .btn:hover{opacity:.85;transform:translateY(-1px);box-shadow:0 4px 10px rgba(24,34,51,0.15);}
+  .btn:hover{opacity:.85;transform:translateY(-1px);box-shadow:0 4px 10px rgba(33,31,25,0.18);}
   .btn:active{transform:translateY(0);box-shadow:none;}
   .btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line);}
   .btn.secondary:hover{border-color:var(--ink);opacity:1;box-shadow:none;}
@@ -90,7 +93,7 @@
   }
   .dot2{width:5px;height:5px;border-radius:50%;background:var(--blue);display:inline-block;}
 
-  .welcome-hero h1{font-size:38px;line-height:1.18;letter-spacing:-0.01em;margin:0 0 10px;}
+  .welcome-hero h1{font-size:44px;font-weight:600;line-height:1.14;letter-spacing:-0.015em;margin:0 0 10px;}
   .subhead{font-size:13.5px;color:var(--muted);letter-spacing:0.01em;margin:0 0 28px;}
 
   .welcome-grid{display:grid;grid-template-columns:1fr;gap:36px;}
@@ -109,11 +112,6 @@
   .icon-badge.amber{background:var(--amber-bg);}
   .icon-badge.blue{background:var(--blue-bg);}
   .icon-badge.sm{width:22px;height:22px;}
-
-  .accent{
-    background:linear-gradient(90deg, #7ea3e0, var(--blue));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
 
   .topnav{display:flex;gap:26px;margin-right:22px;}
   .topnav a{font-size:13.5px;color:var(--ink-soft);text-decoration:none;font-weight:500;}
@@ -138,37 +136,43 @@
     margin-top:18px;
   }
 
-  .mock-wrap{position:relative;min-height:380px;}
-  .mock-back{
-    position:absolute;top:10px;left:6%;width:78%;background:var(--panel);
-    border:1px solid var(--line);border-radius:8px;padding:22px 20px;
-    transform:rotate(-3deg);box-shadow:0 14px 30px rgba(24,34,51,0.08);
+  .hero-doc-wrap{position:relative;min-height:400px;padding:10px 4px;}
+  .hero-back{
+    position:absolute;top:8px;left:4%;width:76%;background:var(--panel);
+    border:1px solid var(--line);padding:22px 20px;
+    transform:rotate(-3deg);
   }
-  .mock-back-title{font-family:var(--serif);font-weight:600;font-size:13px;margin-bottom:14px;color:var(--ink-soft);}
-  .mock-line{height:6px;border-radius:3px;background:#eae7dd;margin-bottom:9px;}
-  .mock-line.accent-blue{background:var(--blue-bg);}
-  .mock-line.accent-amber{background:var(--amber-bg);}
-  .mock-front{
-    position:relative;background:var(--panel);border:1px solid var(--line);border-radius:10px;
-    padding:20px 22px 22px;transform:rotate(2deg);box-shadow:0 20px 46px rgba(24,34,51,0.12);
+  .hero-back-kicker{font-family:var(--mono);font-weight:600;font-size:11.5px;margin-bottom:16px;color:var(--muted);letter-spacing:0.03em;}
+  .hero-back-line{height:6px;border-radius:1px;background:#ecdfc2;margin-bottom:10px;}
+  .hero-back-line.stamp{background:var(--stamp-bg);}
+  .hero-back-line.amber{background:var(--amber-bg);}
+  .hero-front{
+    position:relative;background:var(--panel);border:1px solid var(--line);
+    padding:22px 24px 24px;transform:rotate(1.6deg);
     max-width:88%;margin-left:auto;
   }
-  .mock-front-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-  .mock-front-doc{font-size:11px;color:var(--muted);}
-  .mock-tabs{display:flex;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px;flex-wrap:wrap;}
-  .mock-tab{font-size:11px;color:var(--muted);}
-  .mock-tab.active{color:var(--blue);font-weight:600;border-bottom:2px solid var(--blue);padding-bottom:10px;margin-bottom:-11px;}
-  .mock-heading{font-family:var(--serif);font-weight:600;font-size:14.5px;margin-bottom:12px;}
-  .mock-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1efe8;}
-  .mock-row:last-child{border-bottom:none;}
-  .mock-row-text{flex:1;font-size:11.5px;color:var(--ink-soft);line-height:1.4;}
-  .mock-row-text b{color:var(--ink);font-size:12.5px;}
-  .mock-tooltip{
-    position:absolute;top:8px;right:-4px;background:var(--blue);color:#fff;
-    font-size:11.5px;line-height:1.4;padding:10px 14px;border-radius:10px;
-    box-shadow:0 8px 20px rgba(58,90,155,0.3);max-width:130px;
+  .hero-front-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .hero-front-brand{font-family:var(--serif);font-style:italic;font-weight:600;font-size:15px;color:var(--ink);}
+  .hero-front-doc{font-size:11px;color:var(--muted);font-family:var(--mono);}
+  .hero-tabs{display:flex;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px;flex-wrap:wrap;}
+  .hero-tab{font-family:var(--mono);font-size:10.5px;color:var(--muted);}
+  .hero-tab.active{color:var(--stamp);font-weight:600;border-bottom:2px solid var(--stamp);padding-bottom:10px;margin-bottom:-11px;}
+  .hero-heading{font-family:var(--serif);font-weight:600;font-size:14.5px;margin-bottom:12px;}
+  .hero-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #efe3c4;}
+  .hero-row:last-child{border-bottom:none;}
+  .hero-row-icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .hero-row-icon.green{background:var(--green-bg);}
+  .hero-row-icon.blue{background:var(--blue-bg);}
+  .hero-row-icon.amber{background:var(--amber-bg);}
+  .hero-row-text{flex:1;font-size:11.5px;color:var(--ink-soft);line-height:1.4;}
+  .hero-row-text b{color:var(--ink);font-size:12.5px;}
+  .hero-callout{
+    position:absolute;top:64px;right:-26px;background:var(--stamp);color:#fff;
+    font-family:var(--serif);font-style:italic;font-size:12px;line-height:1.4;
+    padding:10px 14px;max-width:134px;transform:rotate(2deg);z-index:2;
   }
-  @media (max-width:879px){ .mock-wrap{display:none;} }
+  .hero-callout::before{content:"";position:absolute;left:-16px;top:16px;width:16px;height:1px;background:var(--stamp);}
+  @media (max-width:879px){ .hero-doc-wrap{display:none;} }
 
   .trust-section{
     margin-top:80px;padding:56px 0 8px;border-top:1px solid var(--line);text-align:center;
@@ -176,9 +180,18 @@
   .trust-head{font-family:var(--serif);font-size:30px;font-weight:600;margin:0 0 12px;}
   .trust-head em{font-style:italic;}
   .trust-sub{color:var(--muted);font-size:14.5px;max-width:56ch;margin:0 auto 44px;line-height:1.6;}
-  .steps-row{display:grid;grid-template-columns:1fr;gap:32px;}
-  @media (min-width:760px){ .steps-row{grid-template-columns:repeat(5, 1fr);gap:20px;} }
-  .step-col{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .steps-row{position:relative;display:grid;grid-template-columns:1fr;gap:38px;}
+  @media (min-width:760px){
+    .steps-row{grid-template-columns:repeat(5, 1fr);gap:16px;}
+    .steps-row::before{content:"";position:absolute;top:19px;left:9%;right:9%;height:1px;background:var(--line);}
+  }
+  .step-col{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
+  .step-num{
+    position:relative;z-index:1;width:38px;height:38px;border-radius:50%;
+    background:var(--paper);border:1.5px solid var(--ink);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:13px;
+  }
   .step-title{font-weight:600;font-size:14px;}
   .step-caption{font-size:12.5px;color:var(--muted);max-width:22ch;line-height:1.4;}
 
@@ -192,9 +205,8 @@
   .faq-a{margin-top:10px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;max-width:60ch;}
 
   .demo-card{
-    position:relative;margin-top:0;border:1px solid var(--line);border-radius:10px;
+    position:relative;margin-top:0;border:1px solid var(--line);border-radius:3px;
     background:var(--panel);padding:30px 28px 26px;
-    box-shadow:0 10px 34px rgba(24,34,51,0.07);
   }
   .demo-card::before{
     content:"\201C";position:absolute;top:-2px;left:22px;
@@ -203,8 +215,9 @@
   }
   .demo-head{margin-bottom:14px;}
   .demo-tag{
-    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
-    padding:4px 10px;border-radius:20px;background:var(--amber-bg);color:var(--amber);
+    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:0.04em;
+    padding:4px 10px;border-radius:2px;background:var(--amber-bg);color:var(--amber);
+    border:1px solid currentColor;
     transition:background .2s ease,color .2s ease;
   }
   .demo-tag.plain{background:var(--green-bg);color:var(--green);}
@@ -213,6 +226,7 @@
     margin:0 0 20px;min-height:120px;
     animation:fadein .25s ease;
   }
+  .demo-text.legalese{font-family:var(--mono);font-size:13.5px;line-height:1.75;letter-spacing:-0.01em;}
   @keyframes fadein{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
   .demo-toggle{
     background:none;border:none;padding:0;cursor:pointer;font-family:var(--sans);
@@ -286,10 +300,10 @@
   .finding p{font-size:14.5px;line-height:1.6;color:var(--ink-soft);margin:6px 0;}
   .finding .why{font-size:13.5px;color:var(--muted);font-style:italic;}
   .evidence{
-    margin-top:10px;background:#f7f6f1;border:1px solid var(--line);border-radius:3px;
-    padding:10px 14px;font-size:13px;color:var(--ink-soft);
+    margin-top:10px;background:#efe5c9;border:1px solid var(--line);border-radius:3px;
+    padding:10px 14px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink-soft);
   }
-  .evidence .loc{font-weight:600;color:var(--ink);margin-right:6px;}
+  .evidence .loc{font-weight:600;color:var(--ink);margin-right:6px;font-family:var(--sans);}
   .finding .ask{margin-top:8px;font-size:13.5px;}
   .finding .ask b{color:var(--ink);}
 
@@ -303,7 +317,7 @@
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px;}
   .two-col h3{font-size:13px;text-transform:none;color:var(--muted);margin:0 0 10px;font-weight:600;}
   .two-col ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:14px;line-height:1.9;}
-  .gap-box{margin-top:26px;padding:14px 16px;background:var(--amber-bg);border-radius:3px;font-size:13.5px;color:#7a5209;}
+  .gap-box{margin-top:26px;padding:14px 16px;background:var(--amber-bg);border-radius:3px;font-size:13.5px;color:#6b430f;}
   .gap-box li{margin-bottom:4px;}
 
   /* Q&A */
@@ -360,7 +374,7 @@
   .legal-link:hover{color:var(--ink-soft);}
 
   .legal-overlay{
-    position:fixed;inset:0;background:rgba(24,34,51,0.45);display:flex;
+    position:fixed;inset:0;background:rgba(33,31,25,0.5);display:flex;
     align-items:center;justify-content:center;padding:24px;z-index:100;
   }
   .legal-modal{
@@ -686,7 +700,6 @@ const FAQS = [
   { q: "Is CLARIFY a substitute for a lawyer?", a: "No. CLARIFY is an informational tool that explains contract wording in plain language. It doesn't determine whether a contract is valid, enforceable, or right for your situation, and it isn't a substitute for advice from a qualified legal professional." },
   { q: "What kinds of contracts can I upload?", a: "Any kind: leases, service agreements, NDAs, employment contracts, vendor terms, and more. CLARIFY isn't limited to one contract type." },
   { q: "Is my document stored anywhere?", a: "Your document is processed for your current session only. It isn't saved to an account or a document history. See the Privacy Policy for full details on retention and third-party processing." },
-  { q: "Do I need to create an account?", a: "No account is required to use CLARIFY." },
 ];
 
 function App() {
@@ -848,7 +861,7 @@ function App() {
 
           {view === "welcome" && (
             <div className="welcome-hero">
-              <h1>Understand the fine print.<br/>Before <span className="accent">you sign.</span></h1>
+              <h1>Understand the fine print.<br/>Before you sign.</h1>
               <p className="subhead">Save time, save money, and avoid the disputes that come from clauses no one really read.</p>
 
               <div className="welcome-grid">
@@ -856,52 +869,51 @@ function App() {
                   <p className="lede">Contracts shouldn't leave you guessing. Upload your document and CLARIFY now! Get a clear, plain-language breakdown of key costs, deadlines, responsibilities, and clauses that deserve a closer look.</p>
 
                   <div className="chip-row">
-                    <span className="chip"><Icon name="check" color="#2f6f4e" size={13}/> No complicated prompts</span>
-                    <span className="chip"><Icon name="check" color="#2f6f4e" size={13}/> No back-and-forth</span>
-                    <span className="chip"><Icon name="check" color="#2f6f4e" size={13}/> No account needed</span>
+                    <span className="chip"><Icon name="check" color="#3f5d34" size={13}/> No complicated prompts</span>
+                    <span className="chip"><Icon name="check" color="#3f5d34" size={13}/> No back-and-forth</span>
+                    <span className="chip"><Icon name="check" color="#3f5d34" size={13}/> No account needed</span>
                   </div>
 
                   <div className="cta-row">
                     <button className="btn" disabled={starting} onClick={startSession}>{starting ? "Starting…" : "Get started"}</button>
                     <a className="how-link" href="#how-it-works">
-                      <span className="play-dot"><Icon name="play" color="#182233" size={12}/></span>
+                      <span className="play-dot"><Icon name="play" color="#211f19" size={12}/></span>
                       <span>See how it works<br/><span className="how-sub">1 min</span></span>
                     </a>
                   </div>
-                  <p className="lock-note"><Icon name="lock" color="#8a8677" size={13}/> Your document is processed for your session and isn't saved to a document history.</p>
+                  <p className="lock-note"><Icon name="lock" color="#8a7b5a" size={13}/> Your document is processed for your session and isn't saved to a document history.</p>
                 </div>
 
-                <div className="mock-wrap">
-                  <div className="mock-back">
-                    <div className="mock-back-title">Service Agreement</div>
-                    <div className="mock-line" style={{width:"88%"}}></div>
-                    <div className="mock-line" style={{width:"95%"}}></div>
-                    <div className="mock-line accent-blue" style={{width:"70%"}}></div>
-                    <div className="mock-line" style={{width:"92%"}}></div>
-                    <div className="mock-line accent-amber" style={{width:"60%"}}></div>
-                    <div className="mock-line" style={{width:"85%"}}></div>
-                    <div className="mock-line" style={{width:"90%"}}></div>
-                    <div className="mock-line" style={{width:"78%"}}></div>
+                <div className="hero-doc-wrap">
+                  <div className="hero-back">
+                    <div className="hero-back-kicker">Service Agreement</div>
+                    <div className="hero-back-line" style={{width:"88%"}}></div>
+                    <div className="hero-back-line" style={{width:"95%"}}></div>
+                    <div className="hero-back-line stamp" style={{width:"70%"}}></div>
+                    <div className="hero-back-line" style={{width:"92%"}}></div>
+                    <div className="hero-back-line amber" style={{width:"60%"}}></div>
+                    <div className="hero-back-line" style={{width:"85%"}}></div>
+                    <div className="hero-back-line" style={{width:"90%"}}></div>
+                    <div className="hero-back-line" style={{width:"78%"}}></div>
                   </div>
-                  <div className="mock-front">
-                    <div className="mock-front-head">
-                      <span className="brand-mark" style={{fontSize:15}}>CLARIFY</span>
-                      <span className="mock-front-doc">Service Agreement</span>
+                  <div className="hero-front">
+                    <div className="hero-front-head">
+                      <span className="hero-front-brand">CLARIFY</span>
                     </div>
-                    <div className="mock-tabs">
-                      <span className="mock-tab active">Summary</span>
-                      <span className="mock-tab">Costs</span>
-                      <span className="mock-tab">Deadlines</span>
-                      <span className="mock-tab">Responsibilities</span>
-                      <span className="mock-tab">Clauses</span>
+                    <div className="hero-tabs">
+                      <span className="hero-tab active">Summary</span>
+                      <span className="hero-tab">Costs</span>
+                      <span className="hero-tab">Deadlines</span>
+                      <span className="hero-tab">Responsibilities</span>
+                      <span className="hero-tab">Clauses</span>
                     </div>
-                    <div className="mock-heading">Key Takeaways</div>
-                    <div className="mock-row"><span className="icon-badge green sm"><Icon name="dollar" color="#2f6f4e" size={13}/></span><span className="mock-row-text"><b>Costs</b><br/>Fees, charges, and payment terms</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
-                    <div className="mock-row"><span className="icon-badge blue sm"><Icon name="calendar" color="#3a5a9b" size={13}/></span><span className="mock-row-text"><b>Deadlines</b><br/>Key dates, notice periods, and term</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
-                    <div className="mock-row"><span className="icon-badge amber sm"><Icon name="check" color="#b3720f" size={13}/></span><span className="mock-row-text"><b>Clauses to Review</b><br/>Terms that may need a closer look</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
-                    <div className="mock-row"><span className="icon-badge blue sm"><Icon name="message" color="#3a5a9b" size={13}/></span><span className="mock-row-text"><b>Questions to Ask</b><br/>Before you sign</span><Icon name="chevron" color="#c7c3b5" size={13}/></div>
+                    <div className="hero-heading">Key Takeaways</div>
+                    <div className="hero-row"><span className="hero-row-icon green"><Icon name="dollar" color="#3f5d34" size={13}/></span><span className="hero-row-text"><b>Costs</b><br/>Fees, charges, and payment terms</span><Icon name="chevron" color="#b7a878" size={13}/></div>
+                    <div className="hero-row"><span className="hero-row-icon blue"><Icon name="calendar" color="#3c4f66" size={13}/></span><span className="hero-row-text"><b>Deadlines</b><br/>Key dates, notice periods, and term</span><Icon name="chevron" color="#b7a878" size={13}/></div>
+                    <div className="hero-row"><span className="hero-row-icon amber"><Icon name="check" color="#96591a" size={13}/></span><span className="hero-row-text"><b>Clauses to Review</b><br/>Terms that may need a closer look</span><Icon name="chevron" color="#b7a878" size={13}/></div>
+                    <div className="hero-row"><span className="hero-row-icon blue"><Icon name="message" color="#3c4f66" size={13}/></span><span className="hero-row-text"><b>Questions to Ask</b><br/>Before you sign</span><Icon name="chevron" color="#b7a878" size={13}/></div>
+                    <div className="hero-callout">From legal jargon<br/>to plain language.</div>
                   </div>
-                  <div className="mock-tooltip">From legal jargon<br/>to plain language.</div>
                 </div>
               </div>
 
@@ -915,27 +927,27 @@ function App() {
               <p className="trust-sub">CLARIFY turns complex contracts into clear, practical insights, so you can make informed decisions with confidence, not guesswork.</p>
               <div className="steps-row">
                 <div className="step-col">
-                  <Icon name="upload" color="#3a5a9b" size={26}/>
+                  <span className="step-num">01</span>
                   <div className="step-title">Upload your contract</div>
                   <div className="step-caption">It only takes a moment.</div>
                 </div>
                 <div className="step-col">
-                  <Icon name="sparkle" color="#3a5a9b" size={26}/>
+                  <span className="step-num">02</span>
                   <div className="step-title">Get a clear breakdown</div>
                   <div className="step-caption">Plain language, not legal jargon.</div>
                 </div>
                 <div className="step-col">
-                  <Icon name="eye" color="#3a5a9b" size={26}/>
+                  <span className="step-num">03</span>
                   <div className="step-title">See what matters</div>
                   <div className="step-caption">Costs, dates, obligations, and clauses to check.</div>
                 </div>
                 <div className="step-col">
-                  <Icon name="shield" color="#3a5a9b" size={26}/>
+                  <span className="step-num">04</span>
                   <div className="step-title">Understand the risks</div>
                   <div className="step-caption">Spot what needs a closer look.</div>
                 </div>
                 <div className="step-col">
-                  <Icon name="bolt" color="#3a5a9b" size={26}/>
+                  <span className="step-num">05</span>
                   <div className="step-title">Make a confident decision</div>
                   <div className="step-caption">Know what you're signing.</div>
                 </div>
@@ -951,7 +963,7 @@ function App() {
                 <div className="demo-head">
                   <span className={"demo-tag" + (demoOn ? " plain" : "")}>{demoOn ? "In plain language" : "Straight from the contract"}</span>
                 </div>
-                <p className="demo-text" key={demoOn ? "plain" : "clause"}>{demoOn ? DEMO_PLAIN : DEMO_CLAUSE}</p>
+                <p className={"demo-text" + (demoOn ? "" : " legalese")} key={demoOn ? "plain" : "clause"}>{demoOn ? DEMO_PLAIN : DEMO_CLAUSE}</p>
                 <button className="demo-toggle" onClick={() => setDemoOn(d => !d)}>
                   {demoOn ? "← See the original clause" : "See what CLARIFY does with it →"}
                 </button>
@@ -1003,7 +1015,7 @@ function App() {
               <div className="step-track">
                 {["Sending your document to the CLARIFY backend", "Extracting text and running structured analysis", "Validating citations before showing results"].map((label, i) => (
                   <div key={i} className={"step-row" + (processingStep === i + 1 ? " active" : processingStep > i + 1 ? " done" : "")}>
-                    {processingStep > i + 1 ? <Icon name="check" color="#2f6f4e"/> : processingStep === i + 1 ? <span className="spin"></span> : <span style={{width:14,height:14,display:"inline-block"}}></span>}
+                    {processingStep > i + 1 ? <Icon name="check" color="#3f5d34"/> : processingStep === i + 1 ? <span className="spin"></span> : <span style={{width:14,height:14,display:"inline-block"}}></span>}
                     {label}
                   </div>
                 ))}
@@ -1087,7 +1099,7 @@ function App() {
                       <div className="qa-item" key={i}>
                         <div className="q">{item.q}</div>
                         {item.a ? (
-                          <div className="a"><span className="tag">{item.a.status}</span>{item.a.answer}{item.a.evidence && <div style={{marginTop:6, color:"#6b7280", fontSize:12.5}}>{item.a.evidence}</div>}</div>
+                          <div className="a"><span className="tag">{item.a.status}</span>{item.a.answer}{item.a.evidence && <div style={{marginTop:6, color:"#8a7b5a", fontSize:12.5}}>{item.a.evidence}</div>}</div>
                         ) : (
                           <div className="a"><span className="spin"></span> Checking the document…</div>
                         )}
@@ -1120,7 +1132,7 @@ function App() {
 
           {view === "ended" && (
             <div className="end-screen">
-              <div className="end-icon"><Icon name="check" color="#2f6f4e" size={26}/></div>
+              <div className="end-icon"><Icon name="check" color="#3f5d34" size={26}/></div>
               <h2>Session ended</h2>
               <p className="lede" style={{margin:"0 auto"}}>All document data, extracted text, findings, and chat from this session have been cleared. Nothing was saved.</p>
               <div style={{marginTop:26}}>
@@ -1138,7 +1150,10 @@ function App() {
           <button className="legal-link" onClick={() => setLegalDoc("terms")}>Terms of Use</button>
           <button className="legal-link" onClick={() => setLegalDoc("disclaimer")}>Disclaimer</button>
         </span>
-        <span>Powered by GIOTRADE Technologies<sup style={{fontSize:9}}>®</sup></span>
+        <span style={{textAlign:"right", lineHeight:1.5}}>
+          Powered by <b style={{fontWeight:700, color:"var(--ink)"}}>GIOTRADE</b> Technologies<sup style={{fontSize:9}}>®</sup>
+          <br/><span style={{fontSize:10.5, color:"var(--muted)"}}>A subsidiary of GIOTRADE Group</span>
+        </span>
       </footer>
 
       {legalDoc && (
